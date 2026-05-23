@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   CalendarDays,
   BusFront,
+  Hotel,
   Tag,
   ArrowRight,
   Check,
@@ -13,6 +14,7 @@ import {
 
 const GRADIENT = "linear-gradient(135deg, #cfeede 0%, #2f9e8e 100%)";
 const PHONE = "+49 2212 725 3591";
+const TEL = `tel:${PHONE.replace(/\s/g, "")}`;
 
 type Tour = {
   country: string;
@@ -21,6 +23,7 @@ type Tour = {
   duration: string;
   departure: string;
   departureCity: string;
+  hotel: string;
   price: string;
   included: string[];
   description: string;
@@ -37,6 +40,7 @@ const tours: Tour[] = [
     duration: "12 дней / 11 ночей",
     departure: "Отправление из Кёльна",
     departureCity: "Кёльн",
+    hotel: "Отель 3*",
     price: "от 499 €",
     included: [
       "Автобус из Кёльна и обратно",
@@ -58,6 +62,7 @@ const tours: Tour[] = [
     duration: "10 дней / 9 ночей",
     departure: "Отправление из Дюссельдорфа",
     departureCity: "Дюссельдорф",
+    hotel: "Отель 3*",
     price: "от 549 €",
     included: [
       "Автобус из Дюссельдорфа и обратно",
@@ -78,6 +83,7 @@ const tours: Tour[] = [
     duration: "8 дней / 7 ночей",
     departure: "Отправление из Кёльна",
     departureCity: "Кёльн",
+    hotel: "Санаторный отель 4*",
     price: "от 629 €",
     included: [
       "Автобус из Кёльна и обратно",
@@ -98,6 +104,7 @@ const tours: Tour[] = [
     duration: "11 дней / 10 ночей",
     departure: "Отправление из Эссена",
     departureCity: "Эссен",
+    hotel: "Отель 4*",
     price: "от 579 €",
     included: [
       "Автобус из Эссена и обратно",
@@ -123,15 +130,56 @@ function setSelect(id: string, value: string) {
 
 export default function PopularTours() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const cardRefs = useRef<(HTMLElement | null)[]>([]);
+  const [shown, setShown] = useState(0);
+  const [fade, setFade] = useState(true);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const prevOpen = useRef<number | null>(null);
 
-  useEffect(() => {
-    if (openIndex !== null) {
-      cardRefs.current[openIndex]?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+  function handleToggle(i: number) {
+    if (openIndex === i) {
+      setOpenIndex(null);
+      return;
     }
+    if (openIndex === null) {
+      setShown(i);
+      setFade(true);
+      setOpenIndex(i);
+    } else {
+      // crossfade content without closing
+      setFade(false);
+      window.setTimeout(() => {
+        setShown(i);
+        setFade(true);
+      }, 200);
+      setOpenIndex(i);
+    }
+  }
+
+  // Auto-scroll + focus only when the drawer opens from a closed state.
+  useEffect(() => {
+    const wasClosed = prevOpen.current === null;
+    prevOpen.current = openIndex;
+    if (openIndex !== null && wasClosed) {
+      const t = window.setTimeout(() => {
+        drawerRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+        headingRef.current?.focus({ preventScroll: true });
+      }, 60);
+      return () => window.clearTimeout(t);
+    }
+  }, [openIndex]);
+
+  // Esc closes the drawer.
+  useEffect(() => {
+    if (openIndex === null) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpenIndex(null);
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
   }, [openIndex]);
 
   function requestTour(tour: Tour) {
@@ -143,6 +191,8 @@ export default function PopularTours() {
       preventScroll: true,
     });
   }
+
+  const tour = tours[shown];
 
   return (
     <section id="tours" className="bg-slate-50 py-20 sm:py-24">
@@ -158,135 +208,179 @@ export default function PopularTours() {
         </div>
 
         <div className="mt-14 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {tours.map((tour, i) => {
-            const isOpen = openIndex === i;
-            const panelId = `tour-panel-${i}`;
-            const titleId = `tour-title-${i}`;
+          {tours.map((t, i) => {
+            const active = openIndex === i;
             return (
               <article
-                key={`${tour.country}-${tour.place}`}
-                ref={(el) => {
-                  cardRefs.current[i] = el;
-                }}
-                className="flex scroll-mt-24 flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm"
+                key={`${t.country}-${t.place}`}
+                className={`flex flex-col overflow-hidden rounded-xl border bg-white shadow-sm transition ${
+                  active
+                    ? "border-brand-500 ring-2 ring-brand-500"
+                    : "border-slate-200 hover:-translate-y-1 hover:shadow-md"
+                }`}
               >
                 <div
                   className="relative aspect-[16/10]"
                   style={{ backgroundImage: GRADIENT }}
                 >
                   <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-brand-700 shadow-sm">
-                    {tour.category}
+                    {t.category}
                   </span>
                 </div>
 
-                <div className="flex flex-1 flex-col p-6">
-                  <h3
-                    id={titleId}
-                    className="font-sans text-lg font-bold text-ink"
-                  >
-                    {tour.country} · {tour.place}
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="font-sans text-lg font-bold text-ink">
+                    {t.country} · {t.place}
                   </h3>
 
                   <div className="mt-3 space-y-2 text-sm text-muted">
                     <p className="flex items-center gap-2">
                       <CalendarDays className="size-4 shrink-0 text-brand-500" />
-                      {tour.duration}
+                      {t.duration}
                     </p>
                     <p className="flex items-center gap-2">
                       <BusFront className="size-4 shrink-0 text-brand-500" />
-                      {tour.departure}
+                      {t.departure}
                     </p>
                     <p className="flex items-center gap-2">
                       <Tag className="size-4 shrink-0 text-brand-500" />
-                      {tour.price}
+                      {t.price}
                     </p>
                   </div>
 
-                  {!isOpen && (
-                    <button
-                      type="button"
-                      onClick={() => setOpenIndex(i)}
-                      aria-expanded={false}
-                      aria-controls={panelId}
-                      className="mt-auto inline-flex min-h-11 items-center gap-1.5 self-start pt-5 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
-                    >
-                      Узнать подробности
-                      <ArrowRight className="size-4" />
-                    </button>
-                  )}
-
-                  <div
-                    id={panelId}
-                    role="region"
-                    aria-labelledby={titleId}
-                    className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    }`}
+                  <button
+                    type="button"
+                    onClick={() => handleToggle(i)}
+                    aria-expanded={active}
+                    aria-controls="tours-drawer"
+                    className="mt-auto inline-flex min-h-11 items-center gap-1.5 self-start pt-5 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
                   >
-                    <div className="overflow-hidden">
-                      <div className="space-y-6 pt-6 text-[16px] leading-[1.7] text-slate-600">
-                        <div>
-                          <h4 className="font-sans text-base font-bold text-ink">
-                            Что входит в тур
-                          </h4>
-                          <ul className="mt-3 space-y-2">
-                            {tour.included.map((item) => (
-                              <li key={item} className="flex items-start gap-2">
-                                <Check className="mt-1 size-4 shrink-0 text-brand-600" />
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div>
-                          <h4 className="font-sans text-base font-bold text-ink">
-                            О направлении
-                          </h4>
-                          <p className="mt-3">{tour.description}</p>
-                        </div>
-
-                        <div>
-                          <h4 className="font-sans text-base font-bold text-ink">
-                            Кому подойдёт
-                          </h4>
-                          <p className="mt-3">{tour.suitable}</p>
-                        </div>
-
-                        <div className="flex flex-col gap-3 sm:flex-row">
-                          <button
-                            type="button"
-                            onClick={() => requestTour(tour)}
-                            className="flex min-h-12 flex-1 items-center justify-center rounded-lg bg-brand-500 px-4 text-center text-sm font-semibold text-white transition-colors hover:bg-brand-600"
-                          >
-                            Оставить заявку на этот тур
-                          </button>
-                          <a
-                            href={`tel:${PHONE.replace(/\s/g, "")}`}
-                            className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-lg border border-brand-500 px-4 text-center text-sm font-semibold text-brand-600 transition-colors hover:bg-brand-50"
-                          >
-                            <Phone className="size-4" />
-                            Позвонить
-                          </a>
-                        </div>
-
-                        <button
-                          type="button"
-                          onClick={() => setOpenIndex(null)}
-                          aria-expanded
-                          aria-controls={panelId}
-                          className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
-                        >
-                          <ChevronUp className="size-4" />
-                          Свернуть
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                    {active ? "Скрыть подробности" : "Узнать подробности"}
+                    <ArrowRight className="size-4" />
+                  </button>
                 </div>
               </article>
             );
           })}
+        </div>
+
+        {/* Широкий drawer на всю ширину секции */}
+        <div
+          id="tours-drawer"
+          role="region"
+          aria-labelledby="tours-drawer-heading"
+          className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+            openIndex !== null ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          }`}
+        >
+          <div className="overflow-hidden">
+            <div
+              ref={drawerRef}
+              className="mt-5 scroll-mt-24 rounded-2xl border border-brand-200 bg-[#f0faf6] p-6 sm:p-8"
+            >
+              <div
+                className={`grid gap-8 transition-opacity duration-200 lg:grid-cols-5 ${
+                  fade ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                {/* Левая колонка: изображение + CTA */}
+                <div className="lg:col-span-2">
+                  <div
+                    className="aspect-[16/10] w-full rounded-xl"
+                    style={{ backgroundImage: GRADIENT }}
+                    role="img"
+                    aria-label={`${tour.country}, ${tour.place}`}
+                  />
+                  <div className="mt-4 flex flex-col gap-3">
+                    <button
+                      type="button"
+                      onClick={() => requestTour(tour)}
+                      className="flex min-h-12 w-full items-center justify-center rounded-lg bg-brand-500 px-4 font-semibold text-white transition-colors hover:bg-brand-600"
+                    >
+                      Оставить заявку на этот тур
+                    </button>
+                    <a
+                      href={TEL}
+                      className="flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-brand-500 px-4 font-semibold text-brand-600 transition-colors hover:bg-brand-50"
+                    >
+                      <Phone className="size-5" />
+                      Позвонить
+                    </a>
+                  </div>
+                </div>
+
+                {/* Правая колонка: текст */}
+                <div className="lg:col-span-3">
+                  <h3
+                    id="tours-drawer-heading"
+                    ref={headingRef}
+                    tabIndex={-1}
+                    className="font-serif text-2xl font-bold text-ink outline-none sm:text-3xl"
+                  >
+                    {tour.country} · {tour.place}
+                  </h3>
+
+                  <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted">
+                    <span className="flex items-center gap-1.5">
+                      <CalendarDays className="size-4 text-brand-500" />
+                      {tour.duration}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <BusFront className="size-4 text-brand-500" />
+                      {tour.departure}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Hotel className="size-4 text-brand-500" />
+                      {tour.hotel}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Tag className="size-4 text-brand-500" />
+                      {tour.price}
+                    </span>
+                  </div>
+
+                  <div className="mt-6 space-y-6 text-[16px] leading-[1.7] text-slate-600">
+                    <div>
+                      <h4 className="font-sans text-base font-bold text-ink">
+                        Что входит в тур
+                      </h4>
+                      <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                        {tour.included.map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <Check className="mt-1 size-4 shrink-0 text-brand-600" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-sans text-base font-bold text-ink">
+                        О направлении
+                      </h4>
+                      <p className="mt-3">{tour.description}</p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-sans text-base font-bold text-ink">
+                        Кому подойдёт
+                      </h4>
+                      <p className="mt-3">{tour.suitable}</p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setOpenIndex(null)}
+                      className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+                    >
+                      <ChevronUp className="size-4" />
+                      Свернуть
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
