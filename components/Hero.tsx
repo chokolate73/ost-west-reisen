@@ -11,7 +11,11 @@ export default function Hero() {
         aria-hidden
       />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/65 to-white/10"
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.92) 38%, rgba(255,255,255,0.6) 58%, rgba(255,255,255,0) 82%)",
+        }}
         aria-hidden
       />
       <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
