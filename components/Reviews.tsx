@@ -68,43 +68,40 @@ export default function Reviews() {
   return (
     <section id="reviews" className="bg-slate-50 py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-2xl text-center sm:text-left">
-            <h2 className="font-serif text-4xl font-bold text-ink sm:text-[2.75rem]">
-              Отзывы наших путешественников
-            </h2>
-            <p className="mt-4 text-lg text-muted">
-              Что говорят о нас люди, которые с нами съездили
-            </p>
-          </div>
-
-          <div className="flex shrink-0 gap-3">
-            <button
-              type="button"
-              onClick={() => scroll(-1)}
-              aria-label="Предыдущие отзывы"
-              className="flex size-12 items-center justify-center rounded-full border border-slate-300 bg-white text-ink transition-colors hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
-            >
-              <ChevronLeft className="size-6" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scroll(1)}
-              aria-label="Следующие отзывы"
-              className="flex size-12 items-center justify-center rounded-full border border-slate-300 bg-white text-ink transition-colors hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
-            >
-              <ChevronRight className="size-6" />
-            </button>
-          </div>
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-serif text-4xl font-bold text-ink sm:text-[2.75rem]">
+            Отзывы наших путешественников
+          </h2>
+          <p className="mt-4 text-lg text-muted">
+            Что говорят о нас люди, которые с нами съездили
+          </p>
         </div>
 
-        <div
-          ref={trackRef}
-          className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2"
-          role="region"
-          aria-label="Карусель отзывов"
-          tabIndex={0}
-        >
+        <div className="relative mt-12">
+          <button
+            type="button"
+            onClick={() => scroll(-1)}
+            aria-label="Предыдущие отзывы"
+            className="absolute left-0 top-1/2 z-10 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-slate-300 bg-white text-ink shadow-md transition-colors hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+          >
+            <ChevronLeft className="size-6" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scroll(1)}
+            aria-label="Следующие отзывы"
+            className="absolute right-0 top-1/2 z-10 flex size-12 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full border border-slate-300 bg-white text-ink shadow-md transition-colors hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+          >
+            <ChevronRight className="size-6" />
+          </button>
+
+          <div
+            ref={trackRef}
+            className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2"
+            role="region"
+            aria-label="Карусель отзывов"
+            tabIndex={0}
+          >
           {reviews.map((review) => (
             <article
               key={review.name}
@@ -141,6 +138,7 @@ export default function Reviews() {
               </blockquote>
             </article>
           ))}
+          </div>
         </div>
       </div>
     </section>
