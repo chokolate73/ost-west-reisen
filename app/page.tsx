@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Destinations from "@/components/Destinations";
+import HealthResorts from "@/components/HealthResorts";
 import WhyUs from "@/components/WhyUs";
 import HowWeWork from "@/components/HowWeWork";
 import RequestForm from "@/components/RequestForm";
@@ -14,6 +15,7 @@ export default function Home() {
       <main>
         <Hero />
         <Destinations />
+        <HealthResorts />
         <WhyUs />
         <HowWeWork />
         <RequestForm />
