@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 const PHONE = "+49 2212 725 3591";
 
@@ -79,11 +79,6 @@ export default function Contacts() {
             );
           })}
         </div>
-
-        <p className="mt-10 flex items-center justify-center gap-2 text-brand-600">
-          <Clock className="size-5" />
-          Кёльн и Северный Рейн-Вестфалия
-        </p>
       </div>
     </section>
   );
