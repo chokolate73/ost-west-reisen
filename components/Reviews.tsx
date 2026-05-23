@@ -77,12 +77,12 @@ export default function Reviews() {
           </p>
         </div>
 
-        <div className="relative mt-12">
+        <div className="relative mt-12 sm:px-16">
           <button
             type="button"
             onClick={() => scroll(-1)}
             aria-label="Предыдущие отзывы"
-            className="absolute left-0 top-1/2 z-10 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-slate-300 bg-white text-ink shadow-md transition-colors hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+            className="absolute left-0 top-1/2 z-10 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full border border-slate-300 bg-white text-ink shadow-md transition-colors hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 sm:flex"
           >
             <ChevronLeft className="size-6" />
           </button>
@@ -90,7 +90,7 @@ export default function Reviews() {
             type="button"
             onClick={() => scroll(1)}
             aria-label="Следующие отзывы"
-            className="absolute right-0 top-1/2 z-10 flex size-12 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full border border-slate-300 bg-white text-ink shadow-md transition-colors hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+            className="absolute right-0 top-1/2 z-10 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full border border-slate-300 bg-white text-ink shadow-md transition-colors hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 sm:flex"
           >
             <ChevronRight className="size-6" />
           </button>
