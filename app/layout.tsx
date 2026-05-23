@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
+import FloatingCall from "@/components/FloatingCall";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="ru" className={`${playfair.variable} ${inter.variable}`}>
       <body className="min-h-screen bg-white text-ink antialiased">
         {children}
+        <FloatingCall />
       </body>
     </html>
   );
