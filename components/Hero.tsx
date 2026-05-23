@@ -5,7 +5,16 @@ const PHONE = "+49 2212 725 3591";
 export default function Hero() {
   return (
     <section id="top" className="hero-watercolor relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/hero.jpg')" }}
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/55 to-transparent"
+        aria-hidden
+      />
+      <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
         <div className="max-w-2xl">
           <h1 className="font-serif text-5xl font-bold leading-[1.08] text-ink sm:text-6xl">
             Доступный отдых у моря —{" "}
