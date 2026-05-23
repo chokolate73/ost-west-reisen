@@ -96,9 +96,9 @@ export default function RequestForm() {
                   <option value="" disabled>
                     Куда хотите поехать?
                   </option>
-                  {destinations.map((d) => (
-                    <option key={d.slug} value={d.name}>
-                      {d.name}
+                  {destinations.map((name) => (
+                    <option key={name} value={name}>
+                      {name}
                     </option>
                   ))}
                 </select>
