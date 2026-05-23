@@ -64,7 +64,7 @@ export default function WhyUs() {
   return (
     <section id="why" className="bg-white py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-[#f5f2ea] px-5 py-14 sm:px-10 sm:py-16">
+        <div className="rounded-3xl bg-brand-50 px-5 py-14 sm:px-10 sm:py-16">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-serif text-4xl font-bold text-ink sm:text-[2.75rem]">
               Почему выбирают нас
@@ -74,7 +74,7 @@ export default function WhyUs() {
             </p>
           </div>
 
-          <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-[#ece8dc] bg-white px-4 py-6 shadow-sm">
+          <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-slate-100 bg-white px-4 py-6 shadow-sm">
             <div className="grid grid-cols-3 divide-x divide-slate-200">
               {stats.map((stat) => (
                 <div key={stat.label} className="px-2 text-center sm:px-4">
@@ -93,7 +93,7 @@ export default function WhyUs() {
             {features.map(({ icon: Icon, title, text }) => (
               <div
                 key={title}
-                className="rounded-2xl border border-[#ece8dc] bg-white p-6"
+                className="rounded-2xl border border-slate-100 bg-white p-6"
               >
                 <div className="flex size-11 items-center justify-center rounded-xl bg-brand-100">
                   <Icon className="size-5 text-brand-600" />
