@@ -26,7 +26,7 @@ export default function Hero() {
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
-              href="#form"
+              href="#contacts"
               className="inline-flex items-center gap-2 rounded-full bg-brand-500 px-7 py-3.5 text-base font-semibold text-white shadow-md shadow-brand-500/20 transition-colors hover:bg-brand-600"
             >
               Подобрать тур

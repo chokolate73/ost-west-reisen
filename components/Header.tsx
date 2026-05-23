@@ -6,8 +6,8 @@ import { Phone, Menu, X } from "lucide-react";
 const navLinks = [
   { label: "Направления", href: "#destinations" },
   { label: "О нас", href: "#why" },
-  { label: "Предложения", href: "#offers" },
-  { label: "Заявка", href: "#form" },
+  { label: "Предложения", href: "#destinations" },
+  { label: "Заявка", href: "#contacts" },
   { label: "Контакты", href: "#contacts" },
 ];
 
@@ -49,7 +49,7 @@ export default function Header() {
             {PHONE}
           </a>
           <a
-            href="#form"
+            href="#contacts"
             className="rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600"
           >
             Забронировать
@@ -87,7 +87,7 @@ export default function Header() {
               {PHONE}
             </a>
             <a
-              href="#form"
+              href="#contacts"
               onClick={() => setOpen(false)}
               className="mt-1 rounded-full bg-brand-500 px-5 py-3 text-center text-sm font-semibold text-white"
             >

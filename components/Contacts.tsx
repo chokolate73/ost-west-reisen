@@ -2,80 +2,88 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const PHONE = "+49 2212 725 3591";
 
-// NOTE: address / email / hours are placeholders — replace with real data.
-const items = [
+type Card = {
+  icon: typeof Phone;
+  label: string;
+  value: string;
+  href?: string;
+};
+
+const cards: Card[] = [
   {
     icon: Phone,
-    title: "Телефон",
-    lines: [PHONE],
+    label: "Телефон",
+    value: PHONE,
     href: `tel:${PHONE.replace(/\s/g, "")}`,
   },
   {
     icon: Mail,
-    title: "E-mail",
-    lines: ["info@ost-west-reisen.de"],
-    href: "mailto:info@ost-west-reisen.de",
+    label: "Email для заявок",
+    value: "info@ostwesttravel.de",
+    href: "mailto:info@ostwesttravel.de",
+  },
+  {
+    icon: Mail,
+    label: "Прямая связь",
+    value: "post@ostwesttravel.de",
+    href: "mailto:post@ostwesttravel.de",
   },
   {
     icon: MapPin,
-    title: "Адрес",
-    lines: ["Köln, Германия"],
-  },
-  {
-    icon: Clock,
-    title: "Часы работы",
-    lines: ["Пн–Пт: 9:00–18:00", "Сб: 10:00–15:00"],
+    label: "Адрес",
+    value: "Franz-Xaver-Mauer-Str. 34, 50374 Erftstadt",
   },
 ];
 
 export default function Contacts() {
   return (
-    <section id="contacts" className="bg-white py-20 sm:py-24">
+    <section id="contacts" className="bg-slate-50 py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-serif text-4xl font-bold text-ink sm:text-[2.75rem]">
-            Контакты
+            Свяжитесь с нами
           </h2>
           <p className="mt-4 text-lg text-muted">
-            Свяжитесь с нами удобным способом — мы всегда рады помочь
+            Мы всегда рады помочь Вам с выбором тура. Звоните — мы говорим
+            по-русски!
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map(({ icon: Icon, title, lines, href }) => {
-            const content = (
+        <div className="mx-auto mt-14 grid max-w-4xl gap-6 sm:grid-cols-2">
+          {cards.map(({ icon: Icon, label, value, href }) => {
+            const inner = (
               <>
-                <div className="flex size-12 items-center justify-center rounded-xl bg-brand-100">
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-brand-100">
                   <Icon className="size-6 text-brand-600" />
                 </div>
-                <h3 className="mt-5 font-sans text-lg font-bold text-ink">
-                  {title}
-                </h3>
-                <div className="mt-2 space-y-0.5 text-muted">
-                  {lines.map((line) => (
-                    <p key={line}>{line}</p>
-                  ))}
+                <div>
+                  <p className="text-sm text-muted">{label}</p>
+                  <p className="mt-0.5 text-lg font-bold text-ink">{value}</p>
                 </div>
               </>
             );
+            const cls =
+              "flex items-center gap-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm";
             return href ? (
               <a
-                key={title}
+                key={label}
                 href={href}
-                className="rounded-2xl border border-slate-100 bg-slate-50 p-7 transition-colors hover:bg-brand-50"
+                className={`${cls} transition-shadow hover:shadow-md`}
               >
-                {content}
+                {inner}
               </a>
             ) : (
-              <div
-                key={title}
-                className="rounded-2xl border border-slate-100 bg-slate-50 p-7"
-              >
-                {content}
+              <div key={label} className={cls}>
+                {inner}
               </div>
             );
           })}
         </div>
+
+        <p className="mt-10 flex items-center justify-center gap-2 text-brand-600">
+          <Clock className="size-5" />
+          Кёльн и Северный Рейн-Вестфалия
+        </p>
       </div>
     </section>
   );
