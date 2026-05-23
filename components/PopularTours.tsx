@@ -21,7 +21,6 @@ type Tour = {
   place: string;
   category: string;
   duration: string;
-  departure: string;
   departureCity: string;
   hotel: string;
   price: string;
@@ -38,7 +37,6 @@ const tours: Tour[] = [
     place: "Золотые пески",
     category: "Популярное",
     duration: "12 дней / 11 ночей",
-    departure: "Отправление из Кёльна",
     departureCity: "Кёльн",
     hotel: "Отель 3*",
     price: "от 499 €",
@@ -60,7 +58,6 @@ const tours: Tour[] = [
     place: "Римини",
     category: "Семейный",
     duration: "10 дней / 9 ночей",
-    departure: "Отправление из Дюссельдорфа",
     departureCity: "Дюссельдорф",
     hotel: "Отель 3*",
     price: "от 549 €",
@@ -81,7 +78,6 @@ const tours: Tour[] = [
     place: "Карловы Вары",
     category: "Лечебный",
     duration: "8 дней / 7 ночей",
-    departure: "Отправление из Кёльна",
     departureCity: "Кёльн",
     hotel: "Санаторный отель 4*",
     price: "от 629 €",
@@ -102,7 +98,6 @@ const tours: Tour[] = [
     place: "Дубровник",
     category: "Спокойный отдых",
     duration: "11 дней / 10 ночей",
-    departure: "Отправление из Эссена",
     departureCity: "Эссен",
     hotel: "Отель 4*",
     price: "от 579 €",
@@ -240,7 +235,7 @@ export default function PopularTours() {
                     </p>
                     <p className="flex items-center gap-2">
                       <BusFront className="size-4 shrink-0 text-brand-500" />
-                      {t.departure}
+                      {t.departureCity}
                     </p>
                     <p className="flex items-center gap-2">
                       <Tag className="size-4 shrink-0 text-brand-500" />
@@ -327,7 +322,7 @@ export default function PopularTours() {
                     </span>
                     <span className="flex items-center gap-1.5">
                       <BusFront className="size-4 text-brand-500" />
-                      {tour.departure}
+                      {tour.departureCity}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Hotel className="size-4 text-brand-500" />
