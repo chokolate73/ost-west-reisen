@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Destinations from "@/components/Destinations";
 import WhyUs from "@/components/WhyUs";
 import HowWeWork from "@/components/HowWeWork";
+import RequestForm from "@/components/RequestForm";
 import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
 
@@ -15,6 +16,7 @@ export default function Home() {
         <Destinations />
         <WhyUs />
         <HowWeWork />
+        <RequestForm />
         <Contacts />
       </main>
       <Footer />

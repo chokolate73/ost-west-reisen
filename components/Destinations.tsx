@@ -8,7 +8,7 @@ function DestinationCard({ dest }: { dest: Destination }) {
 
   return (
     <a
-      href="#contacts"
+      href="#form"
       className="group relative block aspect-[3/4] overflow-hidden rounded-2xl shadow-sm ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
     >
       <div
