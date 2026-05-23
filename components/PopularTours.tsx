@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
   CalendarDays,
-  BusFront,
   Hotel,
   Tag,
   ArrowRight,
@@ -234,10 +233,6 @@ export default function PopularTours() {
                       {t.duration}
                     </p>
                     <p className="flex items-center gap-2">
-                      <BusFront className="size-4 shrink-0 text-brand-500" />
-                      {t.departureCity}
-                    </p>
-                    <p className="flex items-center gap-2">
                       <Tag className="size-4 shrink-0 text-brand-500" />
                       {t.price}
                     </p>
@@ -319,10 +314,6 @@ export default function PopularTours() {
                     <span className="flex items-center gap-1.5">
                       <CalendarDays className="size-4 text-brand-500" />
                       {tour.duration}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <BusFront className="size-4 text-brand-500" />
-                      {tour.departureCity}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Hotel className="size-4 text-brand-500" />
