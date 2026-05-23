@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, CheckCircle2, Phone, Mail, MapPin } from "lucide-react";
+import { Send, CheckCircle2, Phone, Mail, MapPin, Clock } from "lucide-react";
 import { destinations } from "@/lib/destinations";
 
 const labelCls = "mb-2 block text-sm font-semibold text-ink";
@@ -13,7 +13,8 @@ const PHONE = "+49 2212 725 3591";
 type Contact = {
   icon: typeof Phone;
   label: string;
-  value: string;
+  value?: string;
+  lines?: string[];
   href?: string;
 };
 
@@ -32,7 +33,7 @@ const contacts: Contact[] = [
   },
   {
     icon: Mail,
-    label: "Прямая связь",
+    label: "По договорам и документам",
     value: "post@ostwesttravel.de",
     href: "mailto:post@ostwesttravel.de",
   },
@@ -40,6 +41,16 @@ const contacts: Contact[] = [
     icon: MapPin,
     label: "Адрес",
     value: "Franz-Xaver-Mauer-Str. 34, 50374 Erftstadt",
+  },
+  {
+    icon: Clock,
+    label: "Часы работы",
+    lines: ["Пн-Пт: 09:00 - 18:00", "Сб: 10:00 - 14:00", "Вс: выходной"],
+  },
+  {
+    icon: MapPin,
+    label: "Регион",
+    value: "Кёльн и Северный Рейн-Вестфалия",
   },
 ];
 
@@ -157,6 +168,28 @@ export default function ContactSection() {
                 </div>
 
                 <div className="sm:col-span-2">
+                  <label htmlFor="departure" className={labelCls}>
+                    Откуда выезжаем
+                  </label>
+                  <select
+                    id="departure"
+                    name="departure"
+                    defaultValue=""
+                    className={`${fieldCls} bg-white`}
+                  >
+                    <option value="" disabled>
+                      Выберите город отправления
+                    </option>
+                    <option value="Кёльн">Кёльн</option>
+                    <option value="Дюссельдорф">Дюссельдорф</option>
+                    <option value="Эссен">Эссен</option>
+                    <option value="Бонн">Бонн</option>
+                    <option value="Дортмунд">Дортмунд</option>
+                    <option value="Другой город">Другой город</option>
+                  </select>
+                </div>
+
+                <div className="sm:col-span-2">
                   <label htmlFor="dates" className={labelCls}>
                     Желаемые даты
                   </label>
@@ -211,7 +244,7 @@ export default function ContactSection() {
           </p>
 
           <div className="mt-8 flex flex-col gap-4">
-            {contacts.map(({ icon: Icon, label, value, href }) => {
+            {contacts.map(({ icon: Icon, label, value, lines, href }) => {
               const inner = (
                 <>
                   <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-brand-100">
@@ -219,17 +252,25 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-sm text-muted">{label}</p>
-                    <p className="mt-0.5 text-lg font-bold text-ink">{value}</p>
+                    {lines ? (
+                      <div className="mt-1 space-y-0.5 text-[15px] font-medium text-ink">
+                        {lines.map((line) => (
+                          <p key={line}>{line}</p>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="mt-0.5 text-lg font-bold text-ink">{value}</p>
+                    )}
                   </div>
                 </>
               );
               const cls =
-                "flex items-center gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm";
+                "flex items-center gap-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm";
               return href ? (
                 <a
                   key={label}
                   href={href}
-                  className={`${cls} transition-shadow hover:shadow-md`}
+                  className={`${cls} cursor-pointer transition hover:border-brand-200 hover:bg-brand-50 hover:shadow-md`}
                 >
                   {inner}
                 </a>
