@@ -17,7 +17,7 @@ export default function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
         <div className="max-w-2xl">
           <h1 className="font-serif text-5xl font-bold leading-[1.08] text-ink sm:text-6xl">
-            Доступный отдых у моря —{" "}
+            Доступный отдых у моря -{" "}
             <span className="text-brand-500">
               без перелётов и лишних забот
             </span>
