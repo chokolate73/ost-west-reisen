@@ -1,4 +1,4 @@
-import { Bus, ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 
 const PHONE = "+49 2212 725 3591";
 
@@ -7,12 +7,7 @@ export default function Hero() {
     <section id="top" className="hero-watercolor relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
         <div className="max-w-2xl">
-          <span className="inline-flex items-center gap-2 rounded-full bg-brand-100/80 px-4 py-2 text-sm font-medium text-brand-700 ring-1 ring-brand-200/60">
-            <Bus className="size-4" />
-            Автобусные туры из Германии
-          </span>
-
-          <h1 className="mt-7 font-serif text-5xl font-bold leading-[1.08] text-ink sm:text-6xl">
+          <h1 className="font-serif text-5xl font-bold leading-[1.08] text-ink sm:text-6xl">
             Доступный отдых у моря —{" "}
             <span className="text-brand-500">
               без перелётов и лишних забот
