@@ -41,7 +41,7 @@ export default function CatalogCta() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="mx-auto mt-7 flex max-w-md flex-col gap-3 sm:flex-row"
+              className="mx-auto mt-7 flex max-w-md flex-col gap-2.5 sm:flex-row"
             >
               <label htmlFor="catalog-email" className="sr-only">
                 Ваш e-mail
@@ -52,11 +52,11 @@ export default function CatalogCta() {
                 type="email"
                 required
                 placeholder="Ваш e-mail"
-                className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-3 text-ink placeholder:text-slate-400 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+                className="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-ink placeholder:text-slate-400 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
               />
               <button
                 type="submit"
-                className="rounded-lg bg-brand-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-600"
+                className="shrink-0 whitespace-nowrap rounded-lg bg-brand-500 px-5 py-2.5 font-semibold text-white transition-colors hover:bg-brand-600"
               >
                 Получить каталог
               </button>
