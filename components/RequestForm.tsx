@@ -101,6 +101,7 @@ export default function RequestForm() {
                       {name}
                     </option>
                   ))}
+                  <option value="Другие страны">Другие страны</option>
                 </select>
               </div>
 
