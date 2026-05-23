@@ -49,7 +49,7 @@ export default function Destinations() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
           {destinations.map((dest) => (
             <DestinationCard key={dest.slug} dest={dest} />
           ))}
