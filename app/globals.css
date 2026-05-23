@@ -41,3 +41,11 @@
     radial-gradient(120% 100% at 30% 100%, rgba(183, 226, 209, 0.8) 0%, rgba(183, 226, 209, 0) 60%),
     linear-gradient(180deg, #fdf6ef 0%, #f4f9f8 55%, #eef6f6 100%);
 }
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

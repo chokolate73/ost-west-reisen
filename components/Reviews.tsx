@@ -1,4 +1,7 @@
-import { Quote, MapPin } from "lucide-react";
+"use client";
+
+import { useRef } from "react";
+import { Quote, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 
 type Review = {
   name: string;
@@ -52,24 +55,62 @@ const reviews: Review[] = [
 ];
 
 export default function Reviews() {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  function scroll(direction: 1 | -1) {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.querySelector<HTMLElement>("[data-card]");
+    const amount = card ? card.offsetWidth + 24 : track.clientWidth;
+    track.scrollBy({ left: direction * amount, behavior: "smooth" });
+  }
+
   return (
     <section id="reviews" className="bg-slate-50 py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-serif text-4xl font-bold text-ink sm:text-[2.75rem]">
-            Отзывы наших путешественников
-          </h2>
-          <p className="mt-4 text-lg text-muted">
-            Что говорят о нас люди, которые с нами съездили
-          </p>
+        <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl text-center sm:text-left">
+            <h2 className="font-serif text-4xl font-bold text-ink sm:text-[2.75rem]">
+              Отзывы наших путешественников
+            </h2>
+            <p className="mt-4 text-lg text-muted">
+              Что говорят о нас люди, которые с нами съездили
+            </p>
+          </div>
+
+          <div className="flex shrink-0 gap-3">
+            <button
+              type="button"
+              onClick={() => scroll(-1)}
+              aria-label="Предыдущие отзывы"
+              className="flex size-12 items-center justify-center rounded-full border border-slate-300 bg-white text-ink transition-colors hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+            >
+              <ChevronLeft className="size-6" />
+            </button>
+            <button
+              type="button"
+              onClick={() => scroll(1)}
+              aria-label="Следующие отзывы"
+              className="flex size-12 items-center justify-center rounded-full border border-slate-300 bg-white text-ink transition-colors hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+            >
+              <ChevronRight className="size-6" />
+            </button>
+          </div>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          ref={trackRef}
+          className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2"
+          role="region"
+          aria-label="Карусель отзывов"
+          tabIndex={0}
+        >
           {reviews.map((review) => (
             <article
               key={review.name}
+              data-card
               aria-label={`Отзыв: ${review.name}`}
-              className="relative flex flex-col rounded-xl border-[0.5px] border-slate-200 bg-white p-6 shadow-sm"
+              className="relative flex shrink-0 basis-[calc(50%-0.75rem)] snap-start flex-col rounded-xl border-[0.5px] border-slate-200 bg-white p-6 shadow-sm lg:basis-[calc(33.333%-1rem)]"
             >
               <Quote
                 className="absolute right-6 top-6 size-7 text-brand-200"
