@@ -16,7 +16,7 @@ export default function HealthResorts() {
             className="order-1 aspect-[4/3] rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5"
             style={{
               backgroundImage:
-                "url('/images/health.jpg'), linear-gradient(135deg, #cfeede 0%, #2f9e8e 100%)",
+                "url('/images/kurorty.jpg'), linear-gradient(135deg, #cfeede 0%, #2f9e8e 100%)",
             }}
             role="img"
             aria-label="Лечебные курорты"
