@@ -18,6 +18,10 @@ export default function Hero() {
         }}
         aria-hidden
       />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-white sm:h-56"
+        aria-hidden
+      />
       <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
         <div className="max-w-2xl">
           <h1 className="font-serif text-5xl font-bold leading-[1.08] text-ink sm:text-6xl">
