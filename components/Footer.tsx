@@ -1,5 +1,7 @@
+import Link from "next/link";
+
 const legalLinks = [
-  { label: "AGB", href: "#" },
+  { label: "AGB", href: "/agb" },
   { label: "Datenschutz", href: "#" },
   { label: "Impressum", href: "#" },
 ];
@@ -21,9 +23,12 @@ export default function Footer() {
           {legalLinks.map((link, i) => (
             <span key={link.label} className="flex items-center gap-3">
               {i > 0 && <span aria-hidden>·</span>}
-              <a href={link.href} className="transition-colors hover:text-white">
+              <Link
+                href={link.href}
+                className="transition-colors hover:text-white"
+              >
                 {link.label}
-              </a>
+              </Link>
             </span>
           ))}
         </nav>
