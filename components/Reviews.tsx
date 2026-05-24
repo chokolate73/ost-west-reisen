@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Quote, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 
 type Review = {
@@ -56,13 +56,26 @@ const reviews: Review[] = [
 
 export default function Reviews() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  function step() {
+    const track = trackRef.current;
+    const card = track?.querySelector<HTMLElement>("[data-card]");
+    return card ? card.offsetWidth + 24 : track?.clientWidth ?? 1;
+  }
 
   function scroll(direction: 1 | -1) {
+    trackRef.current?.scrollBy({ left: direction * step(), behavior: "smooth" });
+  }
+
+  function goTo(i: number) {
+    trackRef.current?.scrollTo({ left: i * step(), behavior: "smooth" });
+  }
+
+  function handleScroll() {
     const track = trackRef.current;
     if (!track) return;
-    const card = track.querySelector<HTMLElement>("[data-card]");
-    const amount = card ? card.offsetWidth + 24 : track.clientWidth;
-    track.scrollBy({ left: direction * amount, behavior: "smooth" });
+    setActive(Math.round(track.scrollLeft / step()));
   }
 
   return (
@@ -97,6 +110,7 @@ export default function Reviews() {
 
           <div
             ref={trackRef}
+            onScroll={handleScroll}
             className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2"
             role="region"
             aria-label="Карусель отзывов"
@@ -107,7 +121,7 @@ export default function Reviews() {
               key={review.name}
               data-card
               aria-label={`Отзыв: ${review.name}`}
-              className="relative flex shrink-0 basis-full snap-start flex-col rounded-xl border-[0.5px] border-slate-200 bg-white p-6 shadow-sm sm:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)]"
+              className="relative flex shrink-0 basis-[86%] snap-start flex-col rounded-xl border-[0.5px] border-slate-200 bg-white p-6 shadow-sm sm:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)]"
             >
               <Quote
                 className="absolute right-6 top-6 size-7 text-brand-200"
@@ -138,6 +152,22 @@ export default function Reviews() {
               </blockquote>
             </article>
           ))}
+          </div>
+
+          {/* Точки-индикаторы (особенно важны для свайпа на мобильном) */}
+          <div className="mt-6 flex justify-center gap-2">
+            {reviews.map((review, i) => (
+              <button
+                key={review.name}
+                type="button"
+                onClick={() => goTo(i)}
+                aria-label={`Перейти к отзыву ${i + 1}`}
+                aria-current={active === i}
+                className={`h-2.5 rounded-full transition-all ${
+                  active === i ? "w-6 bg-brand-500" : "w-2.5 bg-slate-300"
+                }`}
+              />
+            ))}
           </div>
         </div>
       </div>
