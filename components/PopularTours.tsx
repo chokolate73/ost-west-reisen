@@ -127,6 +127,34 @@ function setSelect(id: string, value: string) {
   }
 }
 
+function TourInfo({ tour }: { tour: Tour }) {
+  return (
+    <div className="space-y-6 text-[16px] leading-[1.7] text-slate-600">
+      <div>
+        <h4 className="font-sans text-base font-bold text-ink">
+          Что входит в тур
+        </h4>
+        <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+          {tour.included.map((item) => (
+            <li key={item} className="flex items-start gap-2">
+              <Check className="mt-1 size-4 shrink-0 text-brand-600" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h4 className="font-sans text-base font-bold text-ink">О направлении</h4>
+        <p className="mt-3">{tour.description}</p>
+      </div>
+      <div>
+        <h4 className="font-sans text-base font-bold text-ink">Кому подойдёт</h4>
+        <p className="mt-3">{tour.suitable}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function PopularTours() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [shown, setShown] = useState(0);
@@ -155,11 +183,16 @@ export default function PopularTours() {
     }
   }
 
-  // Auto-scroll + focus only when the drawer opens from a closed state.
+  // On desktop the details show in the wide drawer below the row, so scroll
+  // it into view on first open. On mobile they expand inline under the card,
+  // so we deliberately do not scroll.
   useEffect(() => {
     const wasClosed = prevOpen.current === null;
     prevOpen.current = openIndex;
-    if (openIndex !== null && wasClosed) {
+    const isDesktop =
+      typeof window !== "undefined" &&
+      window.matchMedia("(min-width: 1024px)").matches;
+    if (openIndex !== null && wasClosed && isDesktop) {
       const t = window.setTimeout(() => {
         drawerRef.current?.scrollIntoView({
           behavior: "smooth",
@@ -249,24 +282,62 @@ export default function PopularTours() {
                     type="button"
                     onClick={() => handleToggle(i)}
                     aria-expanded={active}
-                    aria-controls="tours-drawer"
+                    aria-controls={`tour-panel-${i} tours-drawer`}
                     className="mt-auto inline-flex min-h-11 items-center gap-1.5 self-start pt-5 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
                   >
                     {active ? "Скрыть подробности" : "Узнать подробности"}
                     <ArrowRight className="size-4" />
                   </button>
+
+                  {/* Мобильное: детали раскрываются прямо под карточкой */}
+                  <div
+                    id={`tour-panel-${i}`}
+                    className={`grid transition-[grid-template-rows] duration-300 ease-out lg:hidden ${
+                      active ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="pt-5">
+                        <TourInfo tour={t} />
+                        <div className="mt-6 flex flex-col gap-3">
+                          <button
+                            type="button"
+                            onClick={() => requestTour(t)}
+                            className="flex min-h-12 w-full items-center justify-center rounded-lg bg-brand-500 px-4 text-center font-semibold text-white transition-colors hover:bg-brand-600"
+                          >
+                            Оставить заявку на этот тур
+                          </button>
+                          <a
+                            href={TEL}
+                            className="flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-brand-500 px-4 font-semibold text-brand-600 transition-colors hover:bg-brand-50"
+                          >
+                            <Phone className="size-5" />
+                            Позвонить
+                          </a>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setOpenIndex(null)}
+                          className="mt-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+                        >
+                          <ChevronUp className="size-4" />
+                          Свернуть
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </article>
             );
           })}
         </div>
 
-        {/* Широкий drawer на всю ширину секции */}
+        {/* Десктоп: широкий drawer на всю ширину секции */}
         <div
           id="tours-drawer"
           role="region"
           aria-labelledby="tours-drawer-heading"
-          className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+          className={`hidden transition-[grid-template-rows] duration-300 ease-out lg:grid ${
             openIndex !== null ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
           }`}
         >
@@ -334,39 +405,13 @@ export default function PopularTours() {
                     </span>
                   </div>
 
-                  <div className="mt-6 space-y-6 text-[16px] leading-[1.7] text-slate-600">
-                    <div>
-                      <h4 className="font-sans text-base font-bold text-ink">
-                        Что входит в тур
-                      </h4>
-                      <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-                        {tour.included.map((item) => (
-                          <li key={item} className="flex items-start gap-2">
-                            <Check className="mt-1 size-4 shrink-0 text-brand-600" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="font-sans text-base font-bold text-ink">
-                        О направлении
-                      </h4>
-                      <p className="mt-3">{tour.description}</p>
-                    </div>
-
-                    <div>
-                      <h4 className="font-sans text-base font-bold text-ink">
-                        Кому подойдёт
-                      </h4>
-                      <p className="mt-3">{tour.suitable}</p>
-                    </div>
+                  <div className="mt-6">
+                    <TourInfo tour={tour} />
 
                     <button
                       type="button"
                       onClick={() => setOpenIndex(null)}
-                      className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+                      className="mt-6 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
                     >
                       <ChevronUp className="size-4" />
                       Свернуть
