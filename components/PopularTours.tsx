@@ -16,6 +16,7 @@ const PHONE = "+49 2212 725 3591";
 const TEL = `tel:${PHONE.replace(/\s/g, "")}`;
 
 type Tour = {
+  slug: string;
   country: string;
   place: string;
   category: string;
@@ -32,6 +33,7 @@ type Tour = {
 // must match the form options so the prefill works.
 const tours: Tour[] = [
   {
+    slug: "bulgaria",
     country: "Болгария",
     place: "Золотые пески",
     category: "Популярное",
@@ -53,6 +55,7 @@ const tours: Tour[] = [
       "Подойдёт для спокойного отдыха семьям, парам и одиночным путешественникам",
   },
   {
+    slug: "italy",
     country: "Италия",
     place: "Римини",
     category: "Семейный",
@@ -73,6 +76,7 @@ const tours: Tour[] = [
     suitable: "Подойдёт для тех, кто хочет совместить пляж и культуру",
   },
   {
+    slug: "czech",
     country: "Чехия",
     place: "Карловы Вары",
     category: "Лечебный",
@@ -93,6 +97,7 @@ const tours: Tour[] = [
     suitable: "Подойдёт для оздоровления, реабилитации и спокойного отдыха",
   },
   {
+    slug: "croatia",
     country: "Хорватия",
     place: "Дубровник",
     category: "Спокойный отдых",
@@ -214,8 +219,10 @@ export default function PopularTours() {
                 }`}
               >
                 <div
-                  className="relative aspect-[16/10]"
-                  style={{ backgroundImage: GRADIENT }}
+                  className="relative aspect-[16/10] bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url('/images/tour-${t.slug}.jpg'), ${GRADIENT}`,
+                  }}
                 >
                   <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-brand-700 shadow-sm">
                     {t.category}
@@ -276,8 +283,10 @@ export default function PopularTours() {
                 {/* Левая колонка: изображение + CTA */}
                 <div className="lg:col-span-2">
                   <div
-                    className="aspect-[16/10] w-full rounded-xl"
-                    style={{ backgroundImage: GRADIENT }}
+                    className="aspect-[16/10] w-full rounded-xl bg-cover bg-center"
+                    style={{
+                      backgroundImage: `url('/images/tour-${tour.slug}.jpg'), ${GRADIENT}`,
+                    }}
                     role="img"
                     aria-label={`${tour.country}, ${tour.place}`}
                   />
