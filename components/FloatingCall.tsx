@@ -7,7 +7,7 @@ export default function FloatingCall() {
     <a
       href={`tel:${PHONE.replace(/[^\d+]/g, "")}`}
       aria-label="Позвонить нам"
-      className="fixed bottom-5 right-5 z-50 flex size-14 items-center justify-center sm:bottom-6 sm:right-6"
+      className="fixed bottom-5 right-5 z-50 hidden size-14 items-center justify-center sm:bottom-6 sm:right-6 md:flex"
     >
       <span
         className="absolute inline-flex size-full animate-ping rounded-full bg-brand-400 opacity-60 motion-reduce:hidden"
