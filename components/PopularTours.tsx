@@ -161,6 +161,7 @@ export default function PopularTours() {
   const [fade, setFade] = useState(true);
   const drawerRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const cardRefs = useRef<(HTMLElement | null)[]>([]);
   const prevOpen = useRef<number | null>(null);
 
   function handleToggle(i: number) {
@@ -189,19 +190,24 @@ export default function PopularTours() {
   useEffect(() => {
     const wasClosed = prevOpen.current === null;
     prevOpen.current = openIndex;
+    if (openIndex === null || !wasClosed) return;
     const isDesktop =
       typeof window !== "undefined" &&
       window.matchMedia("(min-width: 1024px)").matches;
-    if (openIndex !== null && wasClosed && isDesktop) {
-      const t = window.setTimeout(() => {
-        drawerRef.current?.scrollIntoView({
+    const t = window.setTimeout(() => {
+      if (isDesktop) {
+        drawerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        headingRef.current?.focus({ preventScroll: true });
+      } else {
+        // Mobile: jump to the top of the opened card so the details read
+        // from the start, no scrolling up needed.
+        cardRefs.current[openIndex]?.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
-        headingRef.current?.focus({ preventScroll: true });
-      }, 60);
-      return () => window.clearTimeout(t);
-    }
+      }
+    }, 60);
+    return () => window.clearTimeout(t);
   }, [openIndex]);
 
   // Esc closes the drawer.
@@ -245,7 +251,10 @@ export default function PopularTours() {
             return (
               <article
                 key={`${t.country}-${t.place}`}
-                className={`flex flex-col overflow-hidden rounded-xl border bg-white shadow-sm transition ${
+                ref={(el) => {
+                  cardRefs.current[i] = el;
+                }}
+                className={`flex scroll-mt-24 flex-col overflow-hidden rounded-xl border bg-white shadow-sm transition ${
                   active
                     ? "border-brand-500 ring-2 ring-brand-500"
                     : "border-slate-200 hover:-translate-y-1 hover:shadow-md"
