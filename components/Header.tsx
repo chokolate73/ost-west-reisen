@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -20,13 +21,15 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/#top" className="flex flex-col leading-tight">
-          <span className="font-serif text-xl font-bold text-ink">
-            Ost-West Reisen
-          </span>
-          <span className="text-xs tracking-wide text-muted">
-            Exklusiv Agentur Köln
-          </span>
+        <Link href="/#top" className="flex items-center">
+          <Image
+            src="/images/logo.png"
+            alt="Ost-West Reisen — Exklusiv Agentur Köln"
+            width={899}
+            height={460}
+            priority
+            className="h-11 w-auto sm:h-12"
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
