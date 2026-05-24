@@ -15,7 +15,8 @@ const inter = Inter({
   subsets: ["latin", "cyrillic"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ost-west-reisen.de";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ost-west-reisen.vercel.app";
 
 const title = "Ost-West Reisen - Автобусные туры из Германии";
 const description =
