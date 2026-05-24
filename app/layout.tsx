@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   title: "Ost-West Reisen - Автобусные туры из Германии",
   description:
     "Комфортные автобусные туры по Европе с отправлением из удобных городов Германии. Русскоязычное сопровождение на всём маршруте. На рынке с 2002 года.",
+  icons: {
+    icon: "/images/faviconV2.png",
+    shortcut: "/images/faviconV2.png",
+    apple: "/images/faviconV2.png",
+  },
 };
 
 export default function RootLayout({
