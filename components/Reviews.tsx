@@ -107,7 +107,7 @@ export default function Reviews() {
               key={review.name}
               data-card
               aria-label={`Отзыв: ${review.name}`}
-              className="relative flex shrink-0 basis-[calc(50%-0.75rem)] snap-start flex-col rounded-xl border-[0.5px] border-slate-200 bg-white p-6 shadow-sm lg:basis-[calc(33.333%-1rem)]"
+              className="relative flex shrink-0 basis-full snap-start flex-col rounded-xl border-[0.5px] border-slate-200 bg-white p-6 shadow-sm sm:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)]"
             >
               <Quote
                 className="absolute right-6 top-6 size-7 text-brand-200"
