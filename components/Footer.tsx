@@ -17,6 +17,17 @@ export default function Footer() {
           <p className="mt-1 text-sm text-slate-400">
             © {new Date().getFullYear()} Все права защищены
           </p>
+          <p className="mt-1 text-xs text-slate-500">
+            Made by{" "}
+            <a
+              href="https://www.vlad-weby.sk/de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 transition-colors hover:text-white"
+            >
+              vlad-weby
+            </a>
+          </p>
         </div>
 
         <nav className="flex items-center gap-3 text-sm text-slate-400">
