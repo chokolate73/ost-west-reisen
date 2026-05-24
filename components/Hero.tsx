@@ -1,6 +1,6 @@
 import { ArrowRight, Phone } from "lucide-react";
 
-const PHONE = "+49 2212 725 3591";
+const PHONE = "0203 / 29 888-0";
 
 export default function Hero() {
   return (
@@ -45,7 +45,7 @@ export default function Hero() {
               <ArrowRight className="size-5" />
             </a>
             <a
-              href={`tel:${PHONE.replace(/\s/g, "")}`}
+              href={`tel:${PHONE.replace(/[^\d+]/g, "")}`}
               className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/70 px-7 py-3.5 text-base font-semibold text-ink backdrop-blur transition-colors hover:bg-white"
             >
               <Phone className="size-4 text-brand-500" />

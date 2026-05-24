@@ -9,7 +9,7 @@ const labelCls = "mb-2 block text-sm font-semibold text-ink";
 const fieldCls =
   "w-full rounded-lg border border-slate-300 px-4 py-2.5 text-ink placeholder:text-slate-400 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-200";
 
-const PHONE = "+49 2212 725 3591";
+const PHONE = "0203 / 29 888-0";
 
 type Contact = {
   icon: typeof Phone;
@@ -24,7 +24,7 @@ const contacts: Contact[] = [
     icon: Phone,
     label: "Телефон",
     value: PHONE,
-    href: `tel:${PHONE.replace(/\s/g, "")}`,
+    href: `tel:${PHONE.replace(/[^\d+]/g, "")}`,
   },
   {
     icon: Mail,

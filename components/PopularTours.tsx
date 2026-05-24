@@ -12,8 +12,8 @@ import {
 } from "lucide-react";
 
 const GRADIENT = "linear-gradient(135deg, #cfeede 0%, #2f9e8e 100%)";
-const PHONE = "+49 2212 725 3591";
-const TEL = `tel:${PHONE.replace(/\s/g, "")}`;
+const PHONE = "0203 / 29 888-0";
+const TEL = `tel:${PHONE.replace(/[^\d+]/g, "")}`;
 
 type Tour = {
   slug: string;

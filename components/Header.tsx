@@ -12,7 +12,7 @@ const navLinks = [
   { label: "Контакты", href: "/#contacts" },
 ];
 
-const PHONE = "+49 2212 725 3591";
+const PHONE = "0203 / 29 888-0";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -43,7 +43,7 @@ export default function Header() {
 
         <div className="hidden items-center gap-5 lg:flex">
           <a
-            href={`tel:${PHONE.replace(/\s/g, "")}`}
+            href={`tel:${PHONE.replace(/[^\d+]/g, "")}`}
             className="flex items-center gap-2 text-sm font-semibold text-ink"
           >
             <Phone className="size-4 text-brand-500" />
@@ -81,7 +81,7 @@ export default function Header() {
               </Link>
             ))}
             <a
-              href={`tel:${PHONE.replace(/\s/g, "")}`}
+              href={`tel:${PHONE.replace(/[^\d+]/g, "")}`}
               className="mt-2 flex items-center gap-2 px-3 py-2 text-sm font-semibold text-ink"
             >
               <Phone className="size-4 text-brand-500" />
