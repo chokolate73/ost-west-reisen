@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const legalLinks = [
   { label: "AGB", href: "/agb" },
-  { label: "Datenschutz", href: "#" },
+  { label: "Datenschutz", href: "/datenschutz" },
   { label: "Impressum", href: "/impressum" },
 ];
 
