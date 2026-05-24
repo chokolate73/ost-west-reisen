@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Send, CheckCircle2, Phone, Mail, MapPin, Clock } from "lucide-react";
 import { destinations } from "@/lib/destinations";
 
@@ -224,8 +225,13 @@ export default function ContactSection() {
                     Отправить заявку
                   </button>
                   <p className="mt-4 text-center text-xs text-muted">
-                    Нажимая кнопку, Вы соглашаетесь с обработкой персональных
-                    данных
+                    Нажимая кнопку, Вы соглашаетесь с обработкой{" "}
+                    <Link
+                      href="/datenschutz"
+                      className="text-brand-600 underline underline-offset-2 hover:text-brand-700"
+                    >
+                      персональных данных
+                    </Link>
                   </p>
                 </div>
               </form>
