@@ -190,23 +190,32 @@ export default function PopularTours() {
   useEffect(() => {
     const wasClosed = prevOpen.current === null;
     prevOpen.current = openIndex;
-    if (openIndex === null || !wasClosed) return;
+    if (openIndex === null) return;
     const isDesktop =
       typeof window !== "undefined" &&
       window.matchMedia("(min-width: 1024px)").matches;
-    const t = window.setTimeout(() => {
-      if (isDesktop) {
+
+    if (isDesktop) {
+      // Drawer is below the row; only scroll to it on the first open.
+      if (!wasClosed) return;
+      const t = window.setTimeout(() => {
         drawerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
         headingRef.current?.focus({ preventScroll: true });
-      } else {
-        // Mobile: jump to the top of the opened card so the details read
-        // from the start, no scrolling up needed.
-        cardRefs.current[openIndex]?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 60);
+      }, 60);
+      return () => window.clearTimeout(t);
+    }
+
+    // Mobile: scroll to the opened card on every open (including switching
+    // straight from another card). When switching, wait for the previously
+    // open card to finish collapsing so the target position is settled.
+    const target = openIndex;
+    const delay = wasClosed ? 60 : 340;
+    const t = window.setTimeout(() => {
+      cardRefs.current[target]?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, delay);
     return () => window.clearTimeout(t);
   }, [openIndex]);
 
