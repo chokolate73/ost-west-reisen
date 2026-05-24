@@ -15,14 +15,42 @@ const inter = Inter({
   subsets: ["latin", "cyrillic"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ost-west-reisen.de";
+
+const title = "Ost-West Reisen - Автобусные туры из Германии";
+const description =
+  "Комфортные автобусные туры по Европе с отправлением из удобных городов Германии. Русскоязычное сопровождение на всём маршруте. На рынке с 2002 года.";
+
 export const metadata: Metadata = {
-  title: "Ost-West Reisen - Автобусные туры из Германии",
-  description:
-    "Комфортные автобусные туры по Европе с отправлением из удобных городов Германии. Русскоязычное сопровождение на всём маршруте. На рынке с 2002 года.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
   icons: {
     icon: "/images/faviconV2.png",
     shortcut: "/images/faviconV2.png",
     apple: "/images/faviconV2.png",
+  },
+  openGraph: {
+    title,
+    description,
+    url: "/",
+    siteName: "Ost-West Reisen",
+    locale: "ru_RU",
+    type: "website",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ost-West Reisen — автобусные туры из Германии",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/images/og-image.jpg"],
   },
 };
 
