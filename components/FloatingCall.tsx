@@ -1,11 +1,10 @@
 import { Phone } from "lucide-react";
-
-const PHONE = "0203 / 29 888-0";
+import { PHONE_TEL } from "@/lib/contact";
 
 export default function FloatingCall() {
   return (
     <a
-      href={`tel:${PHONE.replace(/[^\d+]/g, "")}`}
+      href={PHONE_TEL}
       aria-label="Позвонить нам"
       className="fixed bottom-5 right-5 z-50 hidden size-14 items-center justify-center sm:bottom-6 sm:right-6 md:flex"
     >

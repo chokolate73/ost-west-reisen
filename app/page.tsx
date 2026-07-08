@@ -7,7 +7,6 @@ import WhyUs from "@/components/WhyUs";
 import HowWeWork from "@/components/HowWeWork";
 import Reviews from "@/components/Reviews";
 import Faq from "@/components/Faq";
-import CatalogCta from "@/components/CatalogCta";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -24,7 +23,6 @@ export default function Home() {
         <HowWeWork />
         <Reviews />
         <Faq />
-        <CatalogCta />
         <ContactSection />
       </main>
       <Footer />

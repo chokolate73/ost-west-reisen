@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { Phone } from "lucide-react";
-
-const PHONE = "0203 / 29 888-0";
-const TEL = `tel:${PHONE.replace(/[^\d+]/g, "")}`;
+import { PHONE_TEL } from "@/lib/contact";
 
 export default function MobileCta() {
   return (
@@ -15,7 +13,7 @@ export default function MobileCta() {
           Заявка
         </Link>
         <a
-          href={TEL}
+          href={PHONE_TEL}
           className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 transition-colors hover:bg-brand-50"
         >
           <Phone className="size-4" />

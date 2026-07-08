@@ -10,10 +10,9 @@ import {
   Phone,
   ChevronUp,
 } from "lucide-react";
+import { PHONE_TEL } from "@/lib/contact";
 
 const GRADIENT = "linear-gradient(135deg, #cfeede 0%, #2f9e8e 100%)";
-const PHONE = "0203 / 29 888-0";
-const TEL = `tel:${PHONE.replace(/[^\d+]/g, "")}`;
 
 type Tour = {
   slug: string;
@@ -44,9 +43,7 @@ const tours: Tour[] = [
     included: [
       "Автобус из Кёльна и обратно",
       "Проживание в отеле 3*",
-      "Завтраки в отеле",
-      "Медицинская страховка",
-      "Русскоязычное сопровождение",
+      "Завтраки в отеле",      "Русскоязычное сопровождение",
       "Все трансферы по маршруту",
     ],
     description:
@@ -66,9 +63,7 @@ const tours: Tour[] = [
     included: [
       "Автобус из Дюссельдорфа и обратно",
       "Проживание в отеле 3*",
-      "Полупансион (завтрак + ужин)",
-      "Медицинская страховка",
-      "Русскоязычное сопровождение",
+      "Полупансион (завтрак + ужин)",      "Русскоязычное сопровождение",
       "Все трансферы по маршруту",
     ],
     description:
@@ -108,9 +103,7 @@ const tours: Tour[] = [
     included: [
       "Автобус из Эссена и обратно",
       "Проживание в отеле 4*",
-      "Завтраки в отеле",
-      "Медицинская страховка",
-      "Русскоязычное сопровождение",
+      "Завтраки в отеле",      "Русскоязычное сопровождение",
       "Все трансферы по маршруту",
     ],
     description:
@@ -326,7 +319,7 @@ export default function PopularTours() {
                             Оставить заявку на этот тур
                           </button>
                           <a
-                            href={TEL}
+                            href={PHONE_TEL}
                             className="flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-brand-500 px-4 font-semibold text-brand-600 transition-colors hover:bg-brand-50"
                           >
                             <Phone className="size-5" />
@@ -388,7 +381,7 @@ export default function PopularTours() {
                       Оставить заявку на этот тур
                     </button>
                     <a
-                      href={TEL}
+                      href={PHONE_TEL}
                       className="flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-brand-500 px-4 font-semibold text-brand-600 transition-colors hover:bg-brand-50"
                     >
                       <Phone className="size-5" />

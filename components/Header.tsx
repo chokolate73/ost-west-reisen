@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, CalendarCheck } from "lucide-react";
+import { PHONE, PHONE_TEL, ONLINE_BOOKING_URL } from "@/lib/contact";
 
 const navLinks = [
   { label: "Направления", href: "/#destinations" },
@@ -12,8 +13,6 @@ const navLinks = [
   { label: "Заявка", href: "/#form" },
   { label: "Контакты", href: "/#contacts" },
 ];
-
-const PHONE = "0203 / 29 888-0";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -46,18 +45,21 @@ export default function Header() {
 
         <div className="hidden items-center gap-5 lg:flex">
           <a
-            href={`tel:${PHONE.replace(/[^\d+]/g, "")}`}
+            href={PHONE_TEL}
             className="flex items-center gap-2 text-sm font-semibold text-ink"
           >
             <Phone className="size-4 text-brand-500" />
             {PHONE}
           </a>
-          <Link
-            href="/#form"
-            className="rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600"
+          <a
+            href={ONLINE_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600"
           >
-            Забронировать
-          </Link>
+            <CalendarCheck className="size-4" />
+            Онлайн-бронирование
+          </a>
         </div>
 
         <button
@@ -84,18 +86,28 @@ export default function Header() {
               </Link>
             ))}
             <a
-              href={`tel:${PHONE.replace(/[^\d+]/g, "")}`}
+              href={PHONE_TEL}
               className="mt-2 flex items-center gap-2 px-3 py-2 text-sm font-semibold text-ink"
             >
               <Phone className="size-4 text-brand-500" />
               {PHONE}
             </a>
+            <a
+              href={ONLINE_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="mt-1 flex items-center justify-center gap-2 rounded-full bg-brand-500 px-5 py-3 text-center text-sm font-semibold text-white"
+            >
+              <CalendarCheck className="size-4" />
+              Онлайн-бронирование тура
+            </a>
             <Link
               href="/#form"
               onClick={() => setOpen(false)}
-              className="mt-1 rounded-full bg-brand-500 px-5 py-3 text-center text-sm font-semibold text-white"
+              className="mt-2 rounded-full border border-brand-500 px-5 py-3 text-center text-sm font-semibold text-brand-700"
             >
-              Забронировать
+              Оставить заявку
             </Link>
           </nav>
         </div>
