@@ -4,12 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { Send, CheckCircle2, Phone, Mail, MapPin, Clock } from "lucide-react";
 import { destinations } from "@/lib/destinations";
+import { PHONE, PHONE_TEL, EMAIL, EMAIL_MAILTO } from "@/lib/contact";
 
 const labelCls = "mb-2 block text-sm font-semibold text-ink";
 const fieldCls =
   "w-full rounded-lg border border-slate-300 px-4 py-2.5 text-ink placeholder:text-slate-400 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-200";
-
-const PHONE = "0203 / 29 888-0";
 
 type Contact = {
   icon: typeof Phone;
@@ -24,19 +23,13 @@ const contacts: Contact[] = [
     icon: Phone,
     label: "Телефон",
     value: PHONE,
-    href: `tel:${PHONE.replace(/[^\d+]/g, "")}`,
+    href: PHONE_TEL,
   },
   {
     icon: Mail,
     label: "Email для заявок",
-    value: "info@ostwesttravel.de",
-    href: "mailto:info@ostwesttravel.de",
-  },
-  {
-    icon: Mail,
-    label: "По договорам и документам",
-    value: "post@ostwesttravel.de",
-    href: "mailto:post@ostwesttravel.de",
+    value: EMAIL,
+    href: EMAIL_MAILTO,
   },
   {
     icon: MapPin,

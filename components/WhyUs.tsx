@@ -4,7 +4,7 @@ import {
   MessageCircle,
   Building2,
   BusFront,
-  ShieldCheck,
+  HeartHandshake,
   type LucideIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -54,9 +54,9 @@ const features: Feature[] = [
     text: "Отправление из Кёльна, Дюссельдорфа, Эссена и других городов. Без аэропортных хлопот.",
   },
   {
-    icon: ShieldCheck,
-    title: "Страховка включена",
-    text: "Медицинская страховка пассажиров в стоимости каждого тура. Спокойствие на всём маршруте.",
+    icon: HeartHandshake,
+    title: "Забота на всём пути",
+    text: "Сопровождаем Вас от первой заявки до возвращения домой - подскажем, поможем и будем на связи на всём маршруте.",
   },
 ];
 

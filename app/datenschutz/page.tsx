@@ -2,13 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { EMAIL, EMAIL_MAILTO } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Datenschutzerklärung | Ost-West Reisen",
-  description: "Datenschutzerklärung der Ost-West Reisen GmbH.",
+  description:
+    "Datenschutz der Ost-West Logistik & Travel e.K. sowie des Reiseveranstalters Ost-West Reisen GmbH.",
 };
 
 const h2Cls = "font-serif text-xl font-bold text-ink";
+const partCls = "mt-14 font-serif text-2xl font-bold text-ink sm:text-[1.75rem]";
+const linkCls = "text-brand-600 hover:text-brand-700";
 
 export default function DatenschutzPage() {
   return (
@@ -16,16 +20,60 @@ export default function DatenschutzPage() {
       <Header />
       <main className="bg-white">
         <div className="mx-auto max-w-3xl px-4 py-16 text-[15px] leading-relaxed text-slate-600 sm:px-6 sm:py-20 lg:px-8">
-          <Link
-            href="/#top"
-            className="text-sm font-semibold text-brand-600 hover:text-brand-700"
-          >
+          <Link href="/#top" className="text-sm font-semibold text-brand-600 hover:text-brand-700">
             ← Zurück zur Startseite
           </Link>
 
           <h1 className="mt-6 font-serif text-3xl font-bold text-ink sm:text-4xl">
             Datenschutzerklärung
           </h1>
+
+          {/* Struktur-Hinweis: wer ist wer */}
+          <div className="mt-6 rounded-2xl bg-brand-50 p-5 sm:p-6">
+            <p className="text-ink">
+              An der Verarbeitung Ihrer Daten können zwei Stellen beteiligt sein:
+            </p>
+            <ul className="mt-3 list-disc space-y-2 pl-5 marker:text-brand-500">
+              <li>
+                Diese Website, die Kontaktstelle und Ihre Buchungsanfrage laufen
+                über die{" "}
+                <strong className="font-semibold text-ink">
+                  Ost-West Logistik &amp; Travel e.K.
+                </strong>{" "}
+                Sie ist für diese Website verantwortlich (Teil A).
+              </li>
+              <li>
+                Wird Ihre Buchung zur Durchführung der Reise an den
+                Reiseveranstalter{" "}
+                <strong className="font-semibold text-ink">
+                  Ost-West Reisen GmbH
+                </strong>{" "}
+                weitergegeben, verarbeitet dieser Ihre Daten in eigener
+                Verantwortung (Teil B).
+              </li>
+            </ul>
+          </div>
+
+          {/* ── Teil A — Ost-West Logistik & Travel e.K. ── */}
+          <h2 className={partCls}>
+            Teil A — Datenschutz der Ost-West Logistik &amp; Travel e.K.
+          </h2>
+
+          <section className="mt-6">
+            <h3 className={h2Cls}>Verantwortlicher</h3>
+            <p className="mt-3">Verantwortlicher im Sinne der DSGVO ist:</p>
+            <p className="mt-3 font-medium text-ink">
+              Ost-West Logistik &amp; Travel e.K.
+            </p>
+            <p>Inhaberin: Vasilya Nigmatova</p>
+            <p>Franz-Xaver-Mauer-Str. 34, 50374 Erftstadt</p>
+            <p className="mt-1">
+              E-Mail:{" "}
+              <a href={EMAIL_MAILTO} className={linkCls}>
+                {EMAIL}
+              </a>
+            </p>
+          </section>
 
           <p className="mt-6 font-medium text-ink">
             Wir erheben, verarbeiten und nutzen Ihre Daten nur im Rahmen der
@@ -44,20 +92,33 @@ export default function DatenschutzPage() {
             werden die von Ihnen zur Verfügung gestellten Daten streng
             vertraulich behandeln. Ohne Ihre ausdrückliche Einwilligung geben wir
             keine persönlichen Daten weiter, es sei denn, dass wir rechtlich dazu
-            verpflichtet sind. Wir weisen jedoch darauf hin, dass es bei der
-            Übermittlung von Daten im Internet immer dazu kommen kann, dass
-            Dritte Ihre Daten zur Kenntnis nehmen oder verfälschen. Sofern Sie es
-            von uns verlangen, gewähren wir Ihnen Einblick in die über Sie
-            gespeicherten Daten, beziehungsweise löschen diese. Wenn Sie Daten
+            verpflichtet sind oder die Weitergabe für die von Ihnen gewünschte
+            Buchung erforderlich ist. Sofern Sie es von uns verlangen, gewähren
+            wir Ihnen Einblick in die über Sie gespeicherten Daten,
+            beziehungsweise berichtigen oder löschen diese. Wenn Sie Daten
             berichtigen, löschen oder einsehen wollen, genügt hierfür ein
-            Schreiben an die im Impressum angegebene Adresse. Im Rahmen der
-            Benachrichtigung unserer Kunden über Produktneuheiten, etc. senden
-            wir Ihnen E-Mails nur zu, sofern Sie uns Ihre E-Mail-Adresse zur
-            Verfügung stellen.
+            Schreiben an die im Impressum angegebene Adresse oder eine E-Mail an
+            die oben genannte Adresse.
           </p>
 
           <section className="mt-10">
-            <h2 className={h2Cls}>Verwendung von Google Analytics</h2>
+            <h3 className={h2Cls}>Kontaktaufnahme und Buchungsanfrage</h3>
+            <p className="mt-3">
+              Wenn Sie uns über das Anfrageformular oder per E-Mail
+              kontaktieren, verarbeiten wir die von Ihnen angegebenen Daten (z.
+              B. Name, Telefonnummer, E-Mail-Adresse sowie Ihre Reisewünsche),
+              um Ihre Anfrage zu bearbeiten und Ihnen ein passendes Angebot zu
+              unterbreiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO
+              (Anbahnung bzw. Durchführung eines Vertrages) sowie Art. 6 Abs. 1
+              lit. f DSGVO (Bearbeitung Ihrer Anfrage). Zur Buchung und
+              Durchführung der Reise geben wir die erforderlichen Daten an den
+              jeweiligen Reiseveranstalter – insbesondere die Ost-West Reisen
+              GmbH – weiter (siehe Teil B).
+            </p>
+          </section>
+
+          <section className="mt-10">
+            <h3 className={h2Cls}>Verwendung von Google Analytics</h3>
             <p className="mt-3">
               Diese Website benutzt Google Analytics, einen Webanalysedienst der
               Google Inc. („Google“). Google Analytics verwendet sog. „Cookies“,
@@ -78,60 +139,14 @@ export default function DatenschutzPage() {
               eine entsprechende Einstellung Ihrer Browser Software verhindern;
               wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall
               gegebenenfalls nicht sämtliche Funktionen dieser Website
-              vollumfänglich nutzen können. Durch die Nutzung dieser Website
-              erklären Sie sich mit der Bearbeitung der über Sie erhobenen Daten
-              durch Google in der zuvor beschriebenen Art und Weise und zu dem
-              zuvor benannten Zweck einverstanden. Der Erhebung und Nutzung Ihrer
+              vollumfänglich nutzen können. Der Erhebung und Nutzung Ihrer
               IP-Adresse durch Google Analytics können Sie jederzeit mit Wirkung
-              für die Zukunft widersprechen. Nähere Informationen hierzu finden
-              Sie unter Browser-Add-on zur Deaktivierung von Google Analytics.
+              für die Zukunft widersprechen.
             </p>
           </section>
 
           <section className="mt-10">
-            <h2 className={h2Cls}>Verwendung von Facebook Social Plugins</h2>
-            <p className="mt-3">
-              Unser Internetauftritt verwendet Social Plugins („Plugins“) des
-              sozialen Netzwerkes facebook.com, welches von der Facebook Inc.,
-              1601 S. California Ave, Palo Alto, CA 94304, USA betrieben wird
-              („Facebook“). Die Plugins sind an einem der Facebook Logos erkennbar
-              (weißes „f“ auf blauer Kachel oder ein „Daumen hoch“-Zeichen) oder
-              sind mit dem Zusatz „Facebook Social Plugin“ gekennzeichnet. Die
-              Liste und das Aussehen der Facebook Social Plugins kann hier
-              eingesehen werden. Wenn Sie eine Webseite unseres Internetauftritts
-              aufrufen, die ein solches Plugin enthält, baut Ihr Browser eine
-              direkte Verbindung mit den Servern von Facebook auf. Der Inhalt des
-              Plugins wird von Facebook direkt an Ihren Browser übermittelt und
-              von diesem in die Webseite eingebunden. Wir haben daher keinen
-              Einfluss auf den Umfang der Daten, die Facebook mit Hilfe dieses
-              Plugins erhebt und informieren Sie daher entsprechend unserem
-              Kenntnisstand: Durch die Einbindung der Plugins erhält Facebook die
-              Information, dass Sie die entsprechende Seite unseres
-              Internetauftritts aufgerufen haben. Sind Sie bei Facebook
-              eingeloggt, kann Facebook den Besuch Ihrem Facebook-Konto zuordnen.
-              Wenn Sie mit den Plugins interagieren, zum Beispiel den Like Button
-              betätigen oder einen Kommentar abgeben, wird die entsprechende
-              Information von Ihrem Browser direkt an Facebook übermittelt und
-              dort gespeichert. Falls Sie kein Mitglied von Facebook sind,
-              besteht trotzdem die Möglichkeit, dass Facebook Ihre IP-Adresse in
-              Erfahrung bringt und speichert. Zweck und Umfang der Datenerhebung
-              und die weitere Verarbeitung und Nutzung der Daten durch Facebook
-              sowie Ihre diesbezüglichen Rechte und Einstellungsmöglichkeiten zum
-              Schutz Ihrer Privatssphäre entnehmen Sie bitte den
-              Datenschutzhinweisen von Facebook. Wenn Sie Facebookmitglied sind
-              und nicht möchten, dass Facebook über unseren Internetauftritt
-              Daten über Sie sammelt und mit Ihren bei Facebook gespeicherten
-              Mitgliedsdaten verknüpft, müssen Sie sich vor Ihrem Besuch unseres
-              Internetauftritts bei Facebook ausloggen.
-            </p>
-            <p className="mt-3">
-              Ebenfalls ist es möglich Facebook-Social-Plugins mit Add-ons für
-              Ihren Browser zu blocken, zum Beispiel mit dem „Facebook Blocker“.
-            </p>
-          </section>
-
-          <section className="mt-10">
-            <h2 className={h2Cls}>Cookies</h2>
+            <h3 className={h2Cls}>Cookies</h3>
             <p className="mt-3">
               Auf einigen unserer Seiten verwenden wir sog. „Session-Cookies“, um
               Ihnen die Nutzung unserer Webseiten zu erleichtern. Dabei handelt
@@ -147,6 +162,35 @@ export default function DatenschutzPage() {
               Sendung von Cookies hinweist.
             </p>
           </section>
+
+          <section className="mt-10">
+            <h3 className={h2Cls}>Ihre Rechte</h3>
+            <p className="mt-3">
+              Sie haben im Rahmen der gesetzlichen Bestimmungen das Recht auf
+              Auskunft über Ihre gespeicherten personenbezogenen Daten (Art. 15
+              DSGVO), auf Berichtigung (Art. 16 DSGVO), auf Löschung (Art. 17
+              DSGVO), auf Einschränkung der Verarbeitung (Art. 18 DSGVO), auf
+              Datenübertragbarkeit (Art. 20 DSGVO) sowie ein Widerspruchsrecht
+              (Art. 21 DSGVO). Zudem steht Ihnen ein Beschwerderecht bei einer
+              Datenschutz-Aufsichtsbehörde zu.
+            </p>
+          </section>
+
+          {/* ── Teil B — Ost-West Reisen GmbH ── */}
+          <h2 className={partCls}>
+            Teil B — Datenschutz der Ost-West Reisen GmbH (Reiseveranstalter)
+          </h2>
+          <p className="mt-3">
+            Zur Buchung und Durchführung der von Ihnen gewünschten Reise geben
+            wir die hierfür erforderlichen Daten an den Reiseveranstalter
+            weiter. Dieser verarbeitet Ihre Daten als eigenständig
+            Verantwortlicher zur Reisedurchführung, Vertragsabwicklung und
+            Kundenbetreuung im Rahmen der gesetzlichen Bestimmungen.
+          </p>
+          <div className="mt-4">
+            <p className="font-medium text-ink">Ost-West Reisen GmbH</p>
+            <p className="mt-1">Grabenstraße 1, 47057 Duisburg</p>
+          </div>
         </div>
       </main>
       <Footer />

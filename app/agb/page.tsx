@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "AGB - Allgemeine Geschäftsbedingungen | Ost-West Reisen",
   description:
-    "Allgemeine Geschäftsbedingungen (Reisebedingungen) der Ost-West Reisen GmbH.",
+    "AGB der Ost-West Logistik & Travel e.K. (Reisevermittlung) sowie Reisebedingungen des Reiseveranstalters Ost-West Reisen GmbH.",
 };
 
 const sectionCls = "mt-10";
@@ -31,6 +31,120 @@ export default function AgbPage() {
           <h1 className="mt-6 font-serif text-3xl font-bold text-ink sm:text-4xl">
             Allgemeine Geschäftsbedingungen
           </h1>
+
+          {/* Struktur-Hinweis: wer ist wer */}
+          <div className="mt-6 rounded-2xl bg-brand-50 p-5 sm:p-6">
+            <p className="text-ink">Diese Bedingungen bestehen aus zwei Teilen:</p>
+            <ul className="mt-3 list-disc space-y-2 pl-5 marker:text-brand-500">
+              <li>
+                <strong className="font-semibold text-ink">Teil A</strong> — AGB
+                der{" "}
+                <strong className="font-semibold text-ink">
+                  Ost-West Logistik &amp; Travel e.K.
+                </strong>{" "}
+                Über sie laufen diese Website, die Kontaktstelle und Ihre
+                Buchungsanfrage (Reisevermittlung).
+              </li>
+              <li>
+                <strong className="font-semibold text-ink">Teil B</strong> —
+                Allgemeine Reisebedingungen der{" "}
+                <strong className="font-semibold text-ink">
+                  Ost-West Reisen GmbH
+                </strong>
+                . Nach diesen Bedingungen wird die Reise selbst durchgeführt
+                (Reiseveranstalter).
+              </li>
+            </ul>
+            <p className="mt-3 text-sm text-muted">
+              Das Impressum dieser Website betrifft ausschließlich die Ost-West
+              Logistik &amp; Travel e.K. (siehe{" "}
+              <Link
+                href="/impressum"
+                className="text-brand-600 hover:text-brand-700"
+              >
+                Impressum
+              </Link>
+              ).
+            </p>
+          </div>
+
+          {/* ── Teil A — Ost-West Logistik & Travel e.K. ── */}
+          <h2 className="mt-12 font-serif text-2xl font-bold text-ink sm:text-[1.75rem]">
+            Teil A — AGB der Ost-West Logistik &amp; Travel e.K.
+            (Reisevermittlung)
+          </h2>
+
+          <section className={sectionCls}>
+            <ol className={olCls}>
+              <li>
+                <strong className="font-semibold text-ink">
+                  Geltungsbereich und Stellung als Vermittler.
+                </strong>{" "}
+                Die Ost-West Logistik &amp; Travel e.K. (im Folgenden
+                „Reisebüro“) betreibt diese Website und ist Ihre Kontakt- und
+                Buchungsstelle. Das Reisebüro tritt als Reisevermittler auf und
+                ist nicht Reiseveranstalter. Vermittelt werden Pauschalreisen und
+                einzelne Reiseleistungen fremder Veranstalter, insbesondere der
+                Ost-West Reisen GmbH.
+              </li>
+              <li>
+                <strong className="font-semibold text-ink">
+                  Zustandekommen des Vertrages.
+                </strong>{" "}
+                Mit einer Buchungsanfrage geben Sie ein Angebot zum Abschluss
+                eines Reisevertrages gegenüber dem jeweiligen Reiseveranstalter
+                ab. Der Reisevertrag kommt unmittelbar zwischen Ihnen und dem
+                Reiseveranstalter zustande; hierfür gelten dessen Reisebedingungen
+                (siehe Teil B). Das Reisebüro ist nicht bevollmächtigt, von den
+                Ausschreibungen oder Reisebedingungen des Veranstalters
+                abweichende Zusicherungen zu treffen.
+              </li>
+              <li>
+                <strong className="font-semibold text-ink">
+                  Leistungen und Haftung des Reisebüros.
+                </strong>{" "}
+                Das Reisebüro schuldet die sorgfältige Vermittlung und Beratung,
+                nicht jedoch die Erbringung der vermittelten Reiseleistung selbst.
+                Für die Durchführung der Reise und etwaige Reisemängel haftet der
+                jeweilige Reiseveranstalter nach den für ihn geltenden
+                Bedingungen.
+              </li>
+              <li>
+                <strong className="font-semibold text-ink">Zahlung.</strong>{" "}
+                Zahlungen auf den Reisepreis richten sich nach den Bedingungen des
+                jeweiligen Reiseveranstalters. Anzahlung und Restzahlung werden
+                nur gegen Aushändigung eines gültigen Sicherungsscheins fällig.
+              </li>
+              <li>
+                <strong className="font-semibold text-ink">Datenschutz.</strong>{" "}
+                Ihre personenbezogenen Daten werden zur Bearbeitung Ihrer Anfrage
+                und zur Durchführung der Vermittlung verarbeitet und – soweit für
+                die Buchung erforderlich – an den jeweiligen Reiseveranstalter
+                weitergegeben. Einzelheiten finden Sie in unserer{" "}
+                <Link
+                  href="/datenschutz"
+                  className="text-brand-600 hover:text-brand-700"
+                >
+                  Datenschutzerklärung
+                </Link>
+                .
+              </li>
+              <li>
+                <strong className="font-semibold text-ink">Kontakt.</strong>{" "}
+                Ost-West Logistik &amp; Travel e.K., Franz-Xaver-Mauer-Str. 34,
+                50374 Erftstadt.
+              </li>
+            </ol>
+          </section>
+
+          {/* ── Teil B — Ost-West Reisen GmbH ── */}
+          <h2 className="mt-14 font-serif text-2xl font-bold text-ink sm:text-[1.75rem]">
+            Teil B — Allgemeine Reisebedingungen der Ost-West Reisen GmbH
+          </h2>
+          <p className="mt-3">
+            Für die vermittelte Reise gelten die nachfolgenden Reisebedingungen
+            des Reiseveranstalters Ost-West Reisen GmbH.
+          </p>
 
           <section className={sectionCls}>
             <h2 className={h2Cls}>I. Abschluss des Reisevertrages</h2>
@@ -531,26 +645,7 @@ export default function AgbPage() {
 
           <div className="mt-12 border-t border-slate-200 pt-8">
             <p className="font-semibold text-ink">Ost-West Reisen GmbH</p>
-            <p className="mt-2">Köhnenstr. 1, 47057 Duisburg</p>
-            <p>Telefon 0049 203 / 29888-0</p>
-            <p>Telefax 0049 0203 / 29888-63</p>
-            <p>
-              E-Mail:{" "}
-              <a
-                href="mailto:reise@ost-prospekt.de"
-                className="text-brand-600 hover:text-brand-700"
-              >
-                reise@ost-prospekt.de
-              </a>
-            </p>
-            <div className="mt-4 space-y-1">
-              <p>Handelsregister Duisburg HRB 19897</p>
-              <p>St.-Nr.: 109-5928-1364</p>
-              <p>USt.-ID: DE252620367</p>
-              <p>IBAN: DE25350800700242577400</p>
-              <p>BIC: DRESDEFF 350</p>
-              <p>Geschäftsführer: Vadym Coldshmidt</p>
-            </div>
+            <p className="mt-2">Grabenstraße 1, 47057 Duisburg</p>
           </div>
 
           <div className="mt-10">

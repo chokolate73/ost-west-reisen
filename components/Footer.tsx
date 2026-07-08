@@ -14,7 +14,12 @@ export default function Footer() {
           <p className="font-sans font-bold text-white">
             Ost-West Reisen
           </p>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-2 max-w-md text-xs leading-relaxed text-slate-400">
+            Сайт и приём заявок — Ost-West Logistik &amp; Travel e.K.
+            <br />
+            Туры проводятся по условиям (AGB) Ost-West Reisen GmbH.
+          </p>
+          <p className="mt-2 text-sm text-slate-400">
             © {new Date().getFullYear()} Все права защищены
           </p>
           <p className="mt-1 text-xs text-slate-500">

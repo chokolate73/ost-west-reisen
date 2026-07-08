@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, Phone } from "lucide-react";
-
-const PHONE = "0203 / 29 888-0";
+import { ArrowRight, Phone, CalendarCheck } from "lucide-react";
+import { PHONE_TEL, ONLINE_BOOKING_URL } from "@/lib/contact";
 
 export default function Hero() {
   return (
@@ -64,7 +63,16 @@ export default function Hero() {
               <ArrowRight className="size-5" />
             </Link>
             <a
-              href={`tel:${PHONE.replace(/[^\d+]/g, "")}`}
+              href={ONLINE_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-brand-500 bg-white px-7 py-3.5 text-base font-semibold text-brand-700 shadow-sm transition-colors hover:bg-brand-50"
+            >
+              <CalendarCheck className="size-5 text-brand-500" />
+              Онлайн-бронирование тура
+            </a>
+            <a
+              href={PHONE_TEL}
               className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/80 px-7 py-3.5 text-base font-semibold text-ink backdrop-blur transition-colors hover:bg-white"
             >
               <Phone className="size-4 text-brand-500" />
