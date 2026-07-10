@@ -12,7 +12,6 @@ export const PHONE_TEL = `tel:${PHONE.replace(/[^\d+]/g, "")}`;
 export const EMAIL = "info@ostwesttravel.de";
 export const EMAIL_MAILTO = `mailto:${EMAIL}`;
 
-// Online tour booking.
-// TODO: заменить на точную ссылку онлайн-бронирования, которую пришлёт клиент.
-// Пока указывает на страницу бронирования Ost-West Logistik & Travel e.K.
-export const ONLINE_BOOKING_URL = "https://www.ostwesttravel.com/buchen/anfrage";
+// Online tour booking — Ost-West Logistik (Filiale "owl"), russische Version.
+export const ONLINE_BOOKING_URL =
+  "https://ostwest-reisen.eu/xml_ws/?aktuell=0&istransport=2&filial=owl&lang=r";
