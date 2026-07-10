@@ -7,7 +7,7 @@ export default function Hero() {
       {/* Фото */}
       <div
         className="absolute inset-0 bg-cover bg-[position:30%_50%] md:bg-center"
-        style={{ backgroundImage: "url('/images/hero.jpg')" }}
+        style={{ backgroundImage: "url('/images/hero.png')" }}
         aria-hidden
       />
       {/* Мобильный: тёмный overlay для читаемости текста на фото */}
