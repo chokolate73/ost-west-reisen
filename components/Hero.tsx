@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { ArrowRight, Phone, CalendarCheck } from "lucide-react";
+import { Phone, CalendarCheck } from "lucide-react";
 import { PHONE_TEL, ONLINE_BOOKING_URL } from "@/lib/contact";
 
 export default function Hero() {
@@ -8,7 +7,7 @@ export default function Hero() {
       {/* Фото */}
       <div
         className="absolute inset-0 bg-cover bg-[position:30%_50%] md:bg-center"
-        style={{ backgroundImage: "url('/images/hero.jpg')" }}
+        style={{ backgroundImage: "url('/images/hero.png')" }}
         aria-hidden
       />
       {/* Мобильный: тёмный overlay для читаемости текста на фото */}
@@ -55,13 +54,13 @@ export default function Hero() {
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-3 md:mt-9 md:gap-4">
-            <Link
-              href="/#form"
+            <a
+              href={PHONE_TEL}
               className="inline-flex items-center gap-2 rounded-full bg-brand-500 px-7 py-3.5 text-base font-semibold text-white shadow-md shadow-brand-500/20 transition-colors hover:bg-brand-600"
             >
-              Подобрать тур
-              <ArrowRight className="size-5" />
-            </Link>
+              <Phone className="size-5" />
+              Позвонить нам
+            </a>
             <a
               href={ONLINE_BOOKING_URL}
               target="_blank"
@@ -70,13 +69,6 @@ export default function Hero() {
             >
               <CalendarCheck className="size-5 text-brand-500" />
               Онлайн-бронирование тура
-            </a>
-            <a
-              href={PHONE_TEL}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/80 px-7 py-3.5 text-base font-semibold text-ink backdrop-blur transition-colors hover:bg-white"
-            >
-              <Phone className="size-4 text-brand-500" />
-              Позвонить нам
             </a>
           </div>
 
