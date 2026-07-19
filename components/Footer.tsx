@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 pb-28 pt-8 sm:px-6 md:flex-row md:items-center md:justify-between md:pb-8 lg:px-8">
         <div>
           <p className="font-sans font-bold text-white">
-            Ost-West Reisen
+            Ost-West Travel
           </p>
           <p className="mt-2 max-w-md text-xs leading-relaxed text-slate-400">
             Сайт и приём заявок — Ost-West Logistik &amp; Travel e.K.
