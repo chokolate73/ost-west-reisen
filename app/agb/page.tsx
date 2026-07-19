@@ -25,7 +25,7 @@ export default function AgbPage() {
             href="/#top"
             className="text-sm font-semibold text-brand-600 hover:text-brand-700"
           >
-            ← Zurück zur Startseite
+            ← Вернуться на главную
           </Link>
 
           <h1 className="mt-6 font-serif text-3xl font-bold text-ink sm:text-4xl">

@@ -22,10 +22,10 @@ export default function Header() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/#top" className="flex items-center">
           <Image
-            src="/images/logo.png"
+            src="/images/logo.svg"
             alt="Ost-West Reisen — Exklusiv Agentur Köln"
-            width={899}
-            height={460}
+            width={900}
+            height={262}
             priority
             className="h-11 w-auto sm:h-12"
           />
@@ -55,6 +55,7 @@ export default function Header() {
             href={ONLINE_BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
+            title="Онлайн-бронирование откроется на сайте туроператора Ost-West Reisen"
             className="flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600"
           >
             <CalendarCheck className="size-4" />
@@ -102,6 +103,10 @@ export default function Header() {
               <CalendarCheck className="size-4" />
               Онлайн-бронирование тура
             </a>
+            <p className="mt-1.5 px-3 text-center text-xs text-muted">
+              Онлайн-бронирование откроется на сайте туроператора Ost-West
+              Reisen.
+            </p>
             <Link
               href="/#form"
               onClick={() => setOpen(false)}

@@ -20,7 +20,6 @@ type Tour = {
   place: string;
   category: string;
   duration: string;
-  departureCity: string;
   hotel: string;
   price: string;
   included: string[];
@@ -28,8 +27,11 @@ type Tour = {
   suitable: string;
 };
 
-// Placeholder tours — to be confirmed/corrected. `country`/`departureCity`
-// must match the form options so the prefill works.
+const DEPARTURE_NOTE =
+  "Отправление из различных городов Германии. Доступные точки отправления зависят от выбранной даты тура.";
+
+// Placeholder tours — to be confirmed/corrected. `country` must match the
+// form options so the prefill works.
 const tours: Tour[] = [
   {
     slug: "bulgaria",
@@ -37,13 +39,12 @@ const tours: Tour[] = [
     place: "Золотые пески",
     category: "Популярное",
     duration: "12 дней / 11 ночей",
-    departureCity: "Кёльн",
     hotel: "Отель 3*",
     price: "от 499 €",
     included: [
-      "Автобус из Кёльна и обратно",
+      DEPARTURE_NOTE,
       "Проживание в отеле 3*",
-      "Завтраки в отеле",      "Русскоязычное сопровождение",
+      "Завтраки в отеле",
       "Все трансферы по маршруту",
     ],
     description:
@@ -57,13 +58,12 @@ const tours: Tour[] = [
     place: "Римини",
     category: "Семейный",
     duration: "10 дней / 9 ночей",
-    departureCity: "Дюссельдорф",
     hotel: "Отель 3*",
     price: "от 549 €",
     included: [
-      "Автобус из Дюссельдорфа и обратно",
+      DEPARTURE_NOTE,
       "Проживание в отеле 3*",
-      "Полупансион (завтрак + ужин)",      "Русскоязычное сопровождение",
+      "Полупансион (завтрак + ужин)",
       "Все трансферы по маршруту",
     ],
     description:
@@ -76,11 +76,10 @@ const tours: Tour[] = [
     place: "Карловы Вары",
     category: "Лечебный",
     duration: "8 дней / 7 ночей",
-    departureCity: "Кёльн",
     hotel: "Санаторный отель 4*",
     price: "от 629 €",
     included: [
-      "Автобус из Кёльна и обратно",
+      DEPARTURE_NOTE,
       "Проживание в санаторном отеле 4*",
       "Полный пансион",
       "Лечебные процедуры по программе",
@@ -97,13 +96,12 @@ const tours: Tour[] = [
     place: "Дубровник",
     category: "Спокойный отдых",
     duration: "11 дней / 10 ночей",
-    departureCity: "Эссен",
     hotel: "Отель 4*",
     price: "от 579 €",
     included: [
-      "Автобус из Эссена и обратно",
+      DEPARTURE_NOTE,
       "Проживание в отеле 4*",
-      "Завтраки в отеле",      "Русскоязычное сопровождение",
+      "Завтраки в отеле",
       "Все трансферы по маршруту",
     ],
     description:
@@ -226,7 +224,6 @@ export default function PopularTours() {
     setOpenIndex(null);
     document.getElementById("form")?.scrollIntoView({ behavior: "smooth" });
     setSelect("destination", tour.country);
-    setSelect("departure", tour.departureCity);
     (document.getElementById("name") as HTMLInputElement | null)?.focus({
       preventScroll: true,
     });
