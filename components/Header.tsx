@@ -24,10 +24,10 @@ export default function Header() {
           <Image
             src="/images/logo.svg"
             alt="Ost-West Reisen — Exklusiv Agentur Köln"
-            width={900}
-            height={262}
+            width={1219}
+            height={550}
             priority
-            className="h-11 w-auto sm:h-12"
+            className="h-14 w-auto sm:h-16"
           />
         </Link>
 
