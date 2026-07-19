@@ -49,7 +49,7 @@ export default function Hero() {
             </span>
             <span className="hidden md:inline">
               Комфортные автобусные туры по Европе с отправлением из удобных
-              городов Германии. Русскоязычное сопровождение на всём маршруте.
+              городов Германии. Обслуживание и поддержка на русском языке.
             </span>
           </p>
 
@@ -72,8 +72,16 @@ export default function Hero() {
             </a>
           </div>
 
+          <p className="mt-3 text-xs text-white/80 [text-shadow:0_1px_3px_rgba(0,0,0,0.4)] md:text-slate-500 md:[text-shadow:none]">
+            Онлайн-бронирование откроется на сайте туроператора Ost-West
+            Reisen.
+          </p>
+
           <p className="mt-7 text-sm text-white/90 [text-shadow:0_1px_3px_rgba(0,0,0,0.4)] md:mt-9 md:text-slate-500 md:[text-shadow:none]">
-            На рынке с 2002 года • Эксклюзивное агентство в Кёльне
+            Ost-West Reisen — туроператор с 2002 года.
+            <br />
+            Мы, ваш эксклюзивный партнёр в Кёльне, консультируем и обслуживаем
+            клиентов по всей Германии с 2010 года.
           </p>
         </div>
       </div>

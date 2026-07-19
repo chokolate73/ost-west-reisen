@@ -43,8 +43,8 @@ const contacts: Contact[] = [
   },
   {
     icon: MapPin,
-    label: "Регион",
-    value: "Кёльн и Северный Рейн-Вестфалия",
+    label: "Местонахождение",
+    lines: ["Регион Кёльна", "Работаем с клиентами по всей Германии"],
   },
 ];
 
@@ -163,24 +163,15 @@ export default function ContactSection() {
 
                 <div className="sm:col-span-2">
                   <label htmlFor="departure" className={labelCls}>
-                    Откуда выезжаем
+                    Город отправления
                   </label>
-                  <select
+                  <input
                     id="departure"
                     name="departure"
-                    defaultValue=""
-                    className={`${fieldCls} bg-white`}
-                  >
-                    <option value="" disabled>
-                      Выберите город отправления
-                    </option>
-                    <option value="Кёльн">Кёльн</option>
-                    <option value="Дюссельдорф">Дюссельдорф</option>
-                    <option value="Эссен">Эссен</option>
-                    <option value="Бонн">Бонн</option>
-                    <option value="Дортмунд">Дортмунд</option>
-                    <option value="Другой город">Другой город</option>
-                  </select>
+                    type="text"
+                    placeholder="Укажите ваш город"
+                    className={fieldCls}
+                  />
                 </div>
 
                 <div className="sm:col-span-2">
@@ -238,8 +229,8 @@ export default function ContactSection() {
             Свяжитесь с нами
           </h2>
           <p className="mt-4 text-lg text-muted">
-            Мы всегда рады помочь Вам с выбором тура. Звоните - мы говорим
-            по-русски!
+            Мы находимся в регионе Кёльна и консультируем клиентов по всей
+            Германии. Звоните или пишите — мы говорим по-русски и по-немецки.
           </p>
 
           <div className="mt-8 flex flex-col gap-4">

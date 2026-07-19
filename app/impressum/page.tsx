@@ -23,7 +23,7 @@ export default function ImpressumPage() {
             href="/#top"
             className="text-sm font-semibold text-brand-600 hover:text-brand-700"
           >
-            ← Zurück zur Startseite
+            ← Вернуться на главную
           </Link>
 
           <h1 className="mt-6 font-serif text-3xl font-bold text-ink sm:text-4xl">
@@ -125,24 +125,7 @@ export default function ImpressumPage() {
           </section>
 
           <section className="mt-10">
-            <h2 className={h2Cls}>
-              Online-Streitbeilegung gemäß Art. 14 Abs. 1 ODR-Verordnung
-            </h2>
-            <p className="mt-3">
-              Die Europäische Kommission stellt eine Plattform zur
-              Online-Streitbeilegung (OS-Plattform) bereit. Sie erreichen diese
-              unter{" "}
-              <a
-                href="https://ec.europa.eu/consumers/odr/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={linkCls}
-              >
-                https://ec.europa.eu/consumers/odr/
-              </a>
-              .
-            </p>
-            <p className="mt-3">
+            <p>
               Gemäß § 36 VSBG weisen wir darauf hin, dass wir nicht verpflichtet
               und nicht bereit sind, an einem Streitbeilegungsverfahren vor einer
               Verbraucherschlichtungsstelle teilzunehmen.
