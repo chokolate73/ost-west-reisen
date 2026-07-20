@@ -22,10 +22,10 @@ export default function Header() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/#top" className="flex items-center">
           <Image
-            src="/images/logo.svg"
+            src="/images/logo.png"
             alt="Ost-West Reisen — Exklusiv Agentur Köln"
-            width={900}
-            height={262}
+            width={899}
+            height={219}
             priority
             className="h-11 w-auto sm:h-12"
           />
