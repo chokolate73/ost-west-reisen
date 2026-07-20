@@ -8,6 +8,7 @@
 //   SemiBoldItalic) — e.g. via fonts.googleapis.com/css2 requested with a
 //   legacy User-Agent so it serves truetype instead of woff2.
 //   node scripts/generate-logo.js
+/* eslint-disable @typescript-eslint/no-require-imports -- standalone Node CJS utility */
 const opentype = require("opentype.js");
 const fs = require("fs");
 const path = require("path");

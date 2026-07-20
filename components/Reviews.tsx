@@ -1,11 +1,13 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { Quote, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 
 type Review = {
   name: string;
   initials: string;
+  photo?: string;
   city: string;
   age?: string;
   route: string;
@@ -16,6 +18,7 @@ const reviews: Review[] = [
   {
     name: "Ольга Викторовна",
     initials: "ОВ",
+    photo: "/images/review-olga.jpeg",
     city: "Дюссельдорф",
     age: "68 лет",
     route: "Болгария, Золотые пески",
@@ -24,6 +27,7 @@ const reviews: Review[] = [
   {
     name: "Виктор Иванович",
     initials: "ВИ",
+    photo: "/images/review-viktor.jpg",
     city: "Кёльн",
     age: "72 года",
     route: "Чехия, Карловы Вары",
@@ -32,6 +36,7 @@ const reviews: Review[] = [
   {
     name: "Тамара Григорьевна",
     initials: "ТГ",
+    photo: "/images/review-tamara.jpg",
     city: "Эссен",
     age: "65 лет",
     route: "Италия, Римини",
@@ -40,6 +45,7 @@ const reviews: Review[] = [
   {
     name: "Семья Шмидт-Петренко",
     initials: "ШП",
+    photo: "/images/review-shmidt.jpg",
     city: "Бонн",
     route: "Хорватия, Дубровник",
     text: "Брали тур всей семьёй с пожилыми родителями. Очень переживали, как они перенесут дорогу. Автобус был с кондиционером, частыми остановками, очень комфортный. Гид была внимательной. Папа сказал, что чувствовал себя как дома.",
@@ -128,12 +134,23 @@ export default function Reviews() {
                 aria-hidden
               />
 
-              <div
-                className="flex size-14 items-center justify-center rounded-full bg-brand-100 text-lg font-medium text-brand-700"
-                aria-hidden
-              >
-                {review.initials}
-              </div>
+              {review.photo ? (
+                <Image
+                  src={review.photo}
+                  alt=""
+                  width={56}
+                  height={56}
+                  sizes="56px"
+                  className="size-14 rounded-full object-cover"
+                />
+              ) : (
+                <div
+                  className="flex size-14 items-center justify-center rounded-full bg-brand-100 text-lg font-medium text-brand-700"
+                  aria-hidden
+                >
+                  {review.initials}
+                </div>
+              )}
 
               <div className="mt-4">
                 <p className="font-semibold text-ink">{review.name}</p>
