@@ -12,6 +12,10 @@ export const PHONE_TEL = `tel:${PHONE.replace(/[^\d+]/g, "")}`;
 export const EMAIL = "info@ostwesttravel.de";
 export const EMAIL_MAILTO = `mailto:${EMAIL}`;
 
+// Formspree endpoint that receives contact-form submissions.
+// The form ID is public by design (it is called from the browser).
+export const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnjezoww";
+
 // Online tour booking — Ost-West Logistik (Filiale "owl"), russische Version.
 export const ONLINE_BOOKING_URL =
   "https://ostwest-reisen.eu/xml_ws/?aktuell=0&istransport=2&filial=owl&lang=r";

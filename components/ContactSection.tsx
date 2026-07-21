@@ -4,7 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { Send, CheckCircle2, Phone, Mail, MapPin, Clock } from "lucide-react";
 import { destinations } from "@/lib/destinations";
-import { PHONE, PHONE_TEL, EMAIL, EMAIL_MAILTO } from "@/lib/contact";
+import {
+  PHONE,
+  PHONE_TEL,
+  EMAIL,
+  EMAIL_MAILTO,
+  FORMSPREE_ENDPOINT,
+} from "@/lib/contact";
 
 const labelCls = "mb-2 block text-sm font-semibold text-ink";
 const fieldCls =
@@ -50,10 +56,44 @@ const contacts: Contact[] = [
 
 export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    // Capture the element before awaiting — React clears the event afterwards.
+    const form = e.currentTarget;
+    setSubmitting(true);
+    setError(null);
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        form.reset();
+      } else {
+        const data = await res.json().catch(() => null);
+        const message = data?.errors
+          ?.map((err: { message?: string }) => err.message)
+          .filter(Boolean)
+          .join(" ");
+        setError(
+          message ||
+            "Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь с нами по телефону.",
+        );
+      }
+    } catch {
+      setError(
+        "Ошибка сети. Проверьте подключение и попробуйте ещё раз или позвоните нам.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -84,6 +124,13 @@ export default function ContactSection() {
                 onSubmit={handleSubmit}
                 className="grid grid-cols-1 gap-5 sm:grid-cols-2"
               >
+                {/* Subject line for the notification e-mail Formspree sends. */}
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="Новая заявка с сайта Ost-West Reisen"
+                />
+
                 <div>
                   <label htmlFor="name" className={labelCls}>
                     Ваше имя <span className="text-rose-500">*</span>
@@ -201,12 +248,33 @@ export default function ContactSection() {
                 </div>
 
                 <div className="sm:col-span-2">
+                  {error && (
+                    <p
+                      role="alert"
+                      className="mb-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700"
+                    >
+                      {error}
+                    </p>
+                  )}
                   <button
                     type="submit"
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-brand-600"
+                    disabled={submitting}
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    <Send className="size-5" />
-                    Отправить заявку
+                    {submitting ? (
+                      <>
+                        <span
+                          aria-hidden
+                          className="size-5 animate-spin rounded-full border-2 border-white/40 border-t-white"
+                        />
+                        Отправка...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="size-5" />
+                        Отправить заявку
+                      </>
+                    )}
                   </button>
                   <p className="mt-4 text-center text-xs text-muted">
                     Нажимая кнопку, Вы соглашаетесь с обработкой{" "}
