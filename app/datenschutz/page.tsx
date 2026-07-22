@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Datenschutzerklärung | Ost-West Reisen",
   description:
     "Datenschutz der Ost-West Logistik & Travel e.K. sowie des Reiseveranstalters Ost-West Reisen GmbH.",
+  alternates: { canonical: "/datenschutz" },
 };
 
 const h2Cls = "font-serif text-xl font-bold text-ink";

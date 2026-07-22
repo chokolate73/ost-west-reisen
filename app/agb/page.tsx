@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "AGB - Allgemeine Geschäftsbedingungen | Ost-West Reisen",
   description:
     "AGB der Ost-West Logistik & Travel e.K. (Reisevermittlung) sowie Reisebedingungen des Reiseveranstalters Ost-West Reisen GmbH.",
+  alternates: { canonical: "/agb" },
 };
 
 const sectionCls = "mt-10";

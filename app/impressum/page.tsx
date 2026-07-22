@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Impressum | Ost-West Logistik & Travel e.K.",
   description:
     "Impressum und Anbieterkennzeichnung der Ost-West Logistik & Travel e.K., Erftstadt.",
+  alternates: { canonical: "/impressum" },
 };
 
 const h2Cls = "font-serif text-xl font-bold text-ink";

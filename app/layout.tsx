@@ -4,6 +4,8 @@ import "./globals.css";
 import FloatingCall from "@/components/FloatingCall";
 import MobileCta from "@/components/MobileCta";
 import CookieConsent from "@/components/CookieConsent";
+import { SITE_URL } from "@/lib/site";
+import { EMAIL } from "@/lib/contact";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -16,15 +18,35 @@ const inter = Inter({
   subsets: ["latin", "cyrillic"],
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ost-west-reisen.vercel.app";
-
-const title = "Ost-West Reisen - Автобусные туры из Германии";
+const title =
+  "Ost-West Reisen — Автобусные туры из Германии. Отдых на море и санаторно-курортное лечение в Европе";
 const description =
-  "Комфортные автобусные туры по Европе с отправлением из многих городов Германии. Обслуживание на русском языке. Ost-West Reisen — туроператор с 2002 года; ваш эксклюзивный партнёр в Кёльне консультирует клиентов по всей Германии с 2010 года.";
+  "Отдых на море в Испании, Италии, Греции, Турции, Болгарии и Хорватии. Санаторно-курортное лечение в Европе. Комфортные автобусные туры с отправлением из многих городов Германии, обслуживание на русском языке. Ost-West Reisen — туроператор с 2002 года; ваш эксклюзивный партнёр в Кёльне консультирует клиентов по всей Германии с 2010 года.";
+
+// Local-business data mirrors /impressum and the company's directory listings.
+const travelAgencySchema = {
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  name: "Ost-West Logistik & Travel e.K.",
+  alternateName: "Ost-West Reisen Köln",
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/logo.png`,
+  image: `${SITE_URL}/images/og-image.jpg`,
+  telephone: "+49 221 27253591",
+  email: EMAIL,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Franz-Xaver-Mauer-Str. 34",
+    postalCode: "50374",
+    addressLocality: "Erftstadt",
+    addressCountry: "DE",
+  },
+  areaServed: "DE",
+  availableLanguage: ["ru", "de"],
+};
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title,
   description,
   icons: {
@@ -64,6 +86,12 @@ export default function RootLayout({
   return (
     <html lang="ru" className={`${montserrat.variable} ${inter.variable}`}>
       <body className="min-h-screen bg-white text-ink antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(travelAgencySchema),
+          }}
+        />
         {children}
         <FloatingCall />
         <MobileCta />
